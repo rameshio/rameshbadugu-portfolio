@@ -61,7 +61,7 @@ export default function Navbar() {
             <Terminal size={16} />
           </motion.div>
           <span>
-            Ramesh<span className="text-red-500 font-extrabold glow-text-red">.B</span>
+            Ramesh<span className="text-red-500 font-extrabold glow-text-red">Badugu</span>
           </span>
         </a>
 
