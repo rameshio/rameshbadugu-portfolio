@@ -38,7 +38,7 @@ export default function App() {
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="text-left">
             <a href="#home" className="font-display font-bold text-lg text-white">
-              Ramesh<span className="text-red-500 font-extrabold">.B</span>
+              Ramesh<span className="text-red-500 font-extrabold">Badugu</span>
             </a>
             <p className="text-xs text-zinc-600 mt-2 max-w-sm leading-relaxed font-sans font-light">
               Java Full Stack &amp; AI Automation Engineer. Crafting highly optimized backend architectures and automated workflow pipelines.
