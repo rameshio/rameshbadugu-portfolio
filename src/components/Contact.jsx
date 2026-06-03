@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, MapPin, Send, MessageSquare, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import { Mail, MapPin, Phone, Send, MessageSquare, ShieldCheck, CheckCircle2 } from 'lucide-react';
 
 export default function Contact() {
   const [formState, setFormState] = useState({ name: '', email: '', message: '' });
@@ -73,18 +73,18 @@ export default function Contact() {
     <Phone size={18} />
   </div>
 
-  <div>
-    <span className="text-[10px] text-zinc-500 uppercase font-semibold tracking-wider font-sans">
-      Phone
-    </span>
+ <div className="mt-4">
+  <span className="text-[10px] text-zinc-500 uppercase font-semibold tracking-wider font-sans">
+    Phone
+  </span>
 
-    <a
-      href="tel:+11234567890"
-      className="text-sm text-zinc-200 hover:text-red-400 transition-colors block mt-0.5"
-    >
-      +1 (908) 309-5257
-    </a>
-  </div>
+  <a
+    href="tel:+19083095257"
+    className="text-sm text-zinc-200 hover:text-red-400 transition-colors block mt-1"
+  >
+    +1 (908) 309-5257
+  </a>
+</div>
 </div>
             </div>
 
