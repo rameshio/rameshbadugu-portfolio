@@ -65,7 +65,7 @@ export default function Contact() {
               <div>
                 <span className="text-[10px] text-zinc-500 uppercase font-semibold tracking-wider font-sans">Email Me</span>
                 <a href="mailto:ramesh.badugu@example.com" className="text-sm text-zinc-200 hover:text-red-400 transition-colors font-mono block mt-0.5">
-                  ramesh.badugu@example.com
+                  rameshbadugums@gmail.com
                 </a>
               </div>
             </div>
@@ -77,7 +77,7 @@ export default function Contact() {
               <div>
                 <span className="text-[10px] text-zinc-500 uppercase font-semibold tracking-wider font-sans">Location</span>
                 <span className="text-sm text-zinc-200 block mt-0.5">
-                  Hyderabad, India (Remote Available)
+                  Minnesota, USA (Remote Available)
                 </span>
               </div>
             </div>
