@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, MapPin, Phone, Send, MessageSquare, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 export default function Contact() {
-  const [formState, setFormState] = useState({ name: '', email: '', message: '' });
+  const [formState, setFormState] = useState({ name: '', email: '', subject: '', message: '' });
   const [status, setStatus] = useState('idle'); // idle, sending, success, error
+  const formRef = useRef();
 
   const handleChange = (e) => {
     setFormState({ ...formState, [e.target.name]: e.target.value });
@@ -12,18 +14,35 @@ export default function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formState.name || !formState.email || !formState.message) {
-      setStatus('error');
+    if (!formState.name || !formState.email || !formState.subject || !formState.message) {
+      setStatus('validation_error');
       return;
     }
     
     setStatus('sending');
 
-    // Simulate database / mail server processing delay
-    setTimeout(() => {
-      setStatus('success');
-      setFormState({ name: '', email: '', message: '' });
-    }, 1800);
+    // EmailJS keys from environment variables
+    const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    if (!serviceID || !templateID || !publicKey) {
+      console.error('EmailJS environment variables are missing');
+      setStatus('error');
+      return;
+    }
+
+    emailjs.sendForm(serviceID, templateID, formRef.current, {
+      publicKey: publicKey
+    })
+      .then(() => {
+        setStatus('success');
+        setFormState({ name: '', email: '', subject: '', message: '' });
+      })
+      .catch((error) => {
+        console.error('EmailJS sending failed:', error);
+        setStatus('error');
+      });
   };
 
   return (
@@ -108,7 +127,7 @@ export default function Contact() {
 
         {/* Right Column: Glassmorphism Form */}
         <div className="lg:col-span-7 w-full">
-          <form onSubmit={handleSubmit} className="glassmorphism p-8 md:p-10 rounded-3xl border border-red-950/35 space-y-6 relative">
+          <form ref={formRef} onSubmit={handleSubmit} className="glassmorphism p-8 md:p-10 rounded-3xl border border-red-950/35 space-y-6 relative">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {/* Name Input */}
               <div className="flex flex-col text-left">
@@ -145,6 +164,23 @@ export default function Contact() {
               </div>
             </div>
 
+            {/* Subject Input */}
+            <div className="flex flex-col text-left">
+              <label htmlFor="subject" className="text-[10px] uppercase font-bold tracking-wider text-zinc-500 mb-2 font-sans">
+                Subject
+              </label>
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                required
+                value={formState.subject}
+                onChange={handleChange}
+                placeholder="e.g. Project Collaboration Opportunity"
+                className="px-4 py-3 rounded-xl bg-black/40 text-sm text-white placeholder-zinc-600 border border-red-950/30 focus:border-red-500/50 focus:shadow-[0_0_15px_rgba(239,68,68,0.15)] focus:outline-none transition-all duration-300 font-sans"
+              />
+            </div>
+
             {/* Message Input */}
             <div className="flex flex-col text-left">
               <label htmlFor="message" className="text-[10px] uppercase font-bold tracking-wider text-zinc-500 mb-2 font-sans">
@@ -168,12 +204,17 @@ export default function Contact() {
               <div className="h-6">
                 {status === 'success' && (
                   <span className="text-emerald-500 font-semibold text-xs flex items-center gap-1.5">
-                    <CheckCircle2 size={14} /> Message dispatched successfully!
+                    <CheckCircle2 size={14} /> Message sent successfully. I will get back to you soon.
+                  </span>
+                )}
+                {status === 'validation_error' && (
+                  <span className="text-red-500 font-semibold text-xs">
+                    Please fill out all input fields.
                   </span>
                 )}
                 {status === 'error' && (
                   <span className="text-red-500 font-semibold text-xs">
-                    Please fill out all input fields.
+                    Failed to send message. Please try again.
                   </span>
                 )}
               </div>
@@ -196,7 +237,7 @@ export default function Contact() {
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                     </svg>
-                    Dispatching...
+                    Sending...
                   </>
                 ) : (
                   <>
