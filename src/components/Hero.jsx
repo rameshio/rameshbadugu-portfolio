@@ -128,12 +128,12 @@ export default function Hero() {
           {/* Action CTAs */}
           <div className="flex flex-wrap gap-4 mb-8">
             <motion.a 
-              href="#projects" 
+              href="#experience" 
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               className="fade-in-btn px-6 py-3.5 rounded-xl text-sm font-semibold tracking-wider text-white bg-gradient-to-r from-red-600 to-red-800 border border-red-500/40 hover:border-red-400 shadow-[0_0_20px_rgba(220,38,38,0.25)] hover:shadow-[0_0_30px_rgba(220,38,38,0.45)] transition-all duration-300 flex items-center gap-2"
             >
-              View Projects <ArrowRight size={16} />
+              View Experience <ArrowRight size={16} />
             </motion.a>
             
             <motion.a 
