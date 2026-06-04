@@ -5,16 +5,16 @@ import confetti from 'canvas-confetti';
 
 const education = [
   {
-    degree: 'Master of Science in Computer Science',
-    institution: 'State University of Technology',
-    period: '2017 - 2019',
-    description: 'Focused on Distributed Databases, Software Engineering Methodologies, and Machine Learning.'
+    degree: 'Master of Science in Information Technology Management',
+    institution: 'Concordia University, St. Paul',
+    period: 'Graduate',
+    description: 'Focus on IT governance, strategic management, enterprise technology alignment, and secure information systems.'
   },
   {
-    degree: 'Bachelor of Technology in Computer Science & Engineering',
-    institution: 'Jawaharlal Nehru Technological University',
-    period: '2013 - 2017',
-    description: 'Foundation in Data Structures, Object-Oriented Programming, and Web Engineering.'
+    degree: 'Master of Science in Artificial Intelligence',
+    institution: 'Southwest Baptist University, Bolivar, MO',
+    period: 'Graduate',
+    description: 'Deep study of machine learning, cognitive systems, neural network designs, and AI agentic automation structures.'
   }
 ];
 
@@ -42,67 +42,13 @@ const certifications = [
 ];
 
 export default function Resume() {
-  const [downloading, setDownloading] = useState(false);
-  const [downloaded, setDownloaded] = useState(false);
-
-  const handleDownload = () => {
-    setDownloading(true);
-    
-    // Simulate slight loading latency
-    setTimeout(() => {
-      // Fire confetti celebration!
-      confetti({
-        particleCount: 150,
-        spread: 80,
-        origin: { y: 0.6 },
-        colors: ['#ef4444', '#991b1b', '#ffffff', '#000000']
-      });
-
-      // Programmatic mock resume file trigger
-      const mockResumeContent = `
-RAMESH BADUGU - RESUME
-Java Full Stack Developer & AI Automation Engineer
-
-CONTACT INFO
-Email: ramesh.badugu@example.com
-LinkedIn: linkedin.com/in/rameshbadugu
-GitHub: github.com/rameshbadugu
-
-SUMMARY
-Java Full Stack Developer and AI Solutions Engineer with 5+ years of experience.
-Specialized in building scalable distributed systems, Spring Boot microservices,
-and automating enterprise workloads using LangGraph, n8n, and custom LLM integrations.
-
-TECHNICAL SKILLS
-- Backend: Java, Spring Boot, Spring Cloud, Hibernate, Microservices, Python, FastAPI
-- AI: LangChain, LangGraph, LLM integration, Pinecone, ChromaDB, RAG, Web Scraping
-- Database & DevOps: PostgreSQL, Redis, MongoDB, Docker, Kubernetes, AWS, Jenkins, Git
-- Frontend: React, Vite, JavaScript, Tailwind CSS, HTML5, CSS3, GSAP, Framer Motion
-
-EXPERIENCE
-- Senior Java Full Stack & AI Solutions Engineer | 2024 - Present
-- Java Full Stack Developer | 2021 - 2024
-- Associate Software Developer | 2019 - 2021
-
-EDUCATION
-- M.S. in Computer Science | 2017 - 2019
-- B.Tech in Computer Science & Engineering | 2013 - 2017
-      `;
-      
-      const element = document.createElement("a");
-      const file = new Blob([mockResumeContent], { type: 'text/plain' });
-      element.href = URL.createObjectURL(file);
-      element.download = "Ramesh_Badugu_Resume.txt";
-      document.body.appendChild(element);
-      element.click();
-      document.body.removeChild(element);
-
-      setDownloading(false);
-      setDownloaded(true);
-
-      // Reset downloaded tag after a few seconds
-      setTimeout(() => setDownloaded(false), 4000);
-    }, 1200);
+  const handleConfetti = () => {
+    confetti({
+      particleCount: 150,
+      spread: 80,
+      origin: { y: 0.6 },
+      colors: ['#ef4444', '#991b1b', '#ffffff', '#000000']
+    });
   };
 
   return (
@@ -217,37 +163,27 @@ EDUCATION
           </p>
         </div>
 
-        <motion.button
-          onClick={handleDownload}
-          disabled={downloading}
-          whileHover={{ scale: 1.03 }}
-          whileTap={{ scale: 0.97 }}
-          className={`px-8 py-4 rounded-2xl text-sm font-semibold tracking-wider text-white shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center gap-3 shrink-0 cursor-pointer ${
-            downloaded
-              ? 'bg-emerald-600 hover:bg-emerald-700 shadow-emerald-500/20 border border-emerald-500/30'
-              : 'bg-gradient-to-r from-red-600 to-red-800 hover:from-red-700 hover:to-red-900 shadow-red-500/20 border border-red-500/40'
-          }`}
-        >
-          {downloading ? (
-            <>
-              <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-              </svg>
-              Processing...
-            </>
-          ) : downloaded ? (
-            <>
-              <CheckCircle size={18} />
-              Downloaded!
-            </>
-          ) : (
-            <>
-              <Download size={18} />
-              Download Resume
-            </>
-          )}
-        </motion.button>
+        <div className="flex flex-wrap gap-4 shrink-0 justify-center md:justify-end">
+          <a
+            href="/resume/Ramesh_Badugu_Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-6 py-3.5 rounded-2xl text-xs font-semibold uppercase tracking-wider text-zinc-300 hover:text-white glassmorphism glassmorphism-hover border border-red-950/40 transition-all duration-300 flex items-center gap-2 cursor-pointer"
+          >
+            <FileCheck size={16} />
+            View Resume
+          </a>
+
+          <a
+            href="/resume/Ramesh_Badugu_Resume.pdf"
+            download="Ramesh_Badugu_Resume.pdf"
+            onClick={handleConfetti}
+            className="px-6 py-3.5 rounded-2xl text-xs font-semibold tracking-wider uppercase text-white bg-gradient-to-r from-red-600 to-red-800 hover:from-red-700 hover:to-red-900 border border-red-500/40 shadow-red-500/20 shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center gap-2 cursor-pointer"
+          >
+            <Download size={16} />
+            Download Resume
+          </a>
+        </div>
       </motion.div>
     </section>
   );

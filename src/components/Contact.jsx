@@ -58,34 +58,24 @@ export default function Contact() {
 
           {/* Details list */}
           <div className="space-y-4">
-            <div className="flex items-center gap-4 p-4 rounded-xl glassmorphism border border-red-950/20">
-              <div className="p-3 rounded-lg bg-red-950/30 border border-red-500/15 text-red-500">
+            <div className="flex items-start gap-4 p-4 rounded-xl glassmorphism border border-red-950/20">
+              <div className="p-3 rounded-lg bg-red-950/30 border border-red-500/15 text-red-500 mt-1">
                 <Mail size={18} />
               </div>
-              <div>
-                <span className="text-[10px] text-zinc-500 uppercase font-semibold tracking-wider font-sans">Email Me</span>
-                <a href="mailto:rameshbadugums@gmail.com" className="text-sm text-zinc-200 hover:text-red-400 transition-colors font-mono block mt-0.5">
-                  rameshbadugums@gmail.com
-                </a>
+              <div className="space-y-3">
+                <div>
+                  <span className="text-[10px] text-zinc-500 uppercase font-semibold tracking-wider font-sans">Email Me</span>
+                  <a href="mailto:rameshbaduguln@gmail.com" className="text-sm text-zinc-200 hover:text-red-400 transition-colors font-mono block mt-0.5">
+                    rameshbaduguln@gmail.com
+                  </a>
+                </div>
+                <div>
+                  <span className="text-[10px] text-zinc-500 uppercase font-semibold tracking-wider font-sans">Phone</span>
+                  <a href="tel:+19083095257" className="text-sm text-zinc-200 hover:text-red-400 transition-colors font-mono block mt-0.5">
+                    +1 908-309-5257
+                  </a>
+                </div>
               </div>
-              <div className="flex items-center gap-4 p-4 rounded-xl glassmorphism border border-red-950/20">
-  <div className="p-3 rounded-lg bg-red-950/30 border border-red-500/15 text-red-500">
-    <Phone size={18} />
-  </div>
-
- <div className="mt-4">
-  <span className="text-[10px] text-zinc-500 uppercase font-semibold tracking-wider font-sans">
-    Phone
-  </span>
-
-  <a
-    href="tel:+19083095257"
-    className="text-sm text-zinc-200 hover:text-red-400 transition-colors block mt-1"
-  >
-    +1 (908) 309-5257
-  </a>
-</div>
-</div>
             </div>
 
             <div className="flex items-center gap-4 p-4 rounded-xl glassmorphism border border-red-950/20">
@@ -95,7 +85,7 @@ export default function Contact() {
               <div>
                 <span className="text-[10px] text-zinc-500 uppercase font-semibold tracking-wider font-sans">Location</span>
                 <span className="text-sm text-zinc-200 block mt-0.5">
-                  Minnesota, USA (Remote Available)
+                  United States (Remote Available)
                 </span>
               </div>
             </div>

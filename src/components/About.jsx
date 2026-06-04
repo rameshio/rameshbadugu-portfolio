@@ -21,7 +21,7 @@ export default function About() {
   }, [isInView]);
 
   const stats = [
-    { value: '5+', label: 'Years Experience', icon: <Award className="text-red-500" size={20} /> },
+    { value: '4+', label: 'Years Experience', icon: <Award className="text-red-500" size={20} /> },
     { value: '30+', label: 'Projects Completed', icon: <Code className="text-red-500" size={20} /> },
     { value: '100k+', label: 'Lines of Code', icon: <Database className="text-red-500" size={20} /> },
     { value: '50+', label: 'Automations Built', icon: <Zap className="text-red-500" size={20} /> }
@@ -53,15 +53,15 @@ export default function About() {
         {/* Left: Detail Narrative Paragraphs */}
         <div className="lg:col-span-7 space-y-6 text-left">
           <h3 className="about-reveal text-xl md:text-2xl font-display font-bold text-white leading-snug">
-            Bridging robust Enterprise Java development with state-of-the-art AI agent workflows.
+            Developing scalable backend architectures, full stack apps, and automated workflows.
           </h3>
           
           <p className="about-reveal text-zinc-400 font-sans leading-relaxed font-light text-base">
-            As a <strong className="text-white font-medium">Java Full Stack Developer &amp; AI Automation Engineer</strong>, I specialize in crafting secure, highly performant systems. My core expertise lies in designing robust distributed services, optimizing relational and NoSQL databases, and engineering seamless frontend interfaces using modern framework technologies.
+            I have 4+ years of experience in Java full stack development, working with Spring Boot, React.js, Microservices, and REST APIs. I specialize in developing, maintaining, and scaling enterprise web applications and backend systems.
           </p>
           
           <p className="about-reveal text-zinc-400 font-sans leading-relaxed font-light text-base">
-            Driven by a passion for efficiency, I have expanded my development horizons into <strong className="text-white font-medium">AI Engineering</strong>. I design intelligent agents, deploy LLM-orchestrated tools, and automate manual enterprise workflows. By integrating smart automations directly into backend systems, I empower businesses to eliminate redundancy and accelerate operational velocity.
+            Currently, I am learning and exploring AI Agents, Model Context Protocol (MCP), and automation workflows to build next-generation intelligent business automation systems.
           </p>
 
           {/* Key pillars */}
@@ -81,8 +81,8 @@ export default function About() {
                 <Cpu size={20} />
               </div>
               <div>
-                <h4 className="font-display font-bold text-sm text-white">AI Agents &amp; LLMs</h4>
-                <p className="text-xs text-zinc-400 mt-1">Developing custom RAG loops, vector search utilities, and AI pipelines.</p>
+                <h4 className="font-display font-bold text-sm text-white">AI Agents &amp; MCP</h4>
+                <p className="text-xs text-zinc-400 mt-1">Exploring Model Context Protocol, workflow automation, and agentic systems integration.</p>
               </div>
             </div>
           </div>

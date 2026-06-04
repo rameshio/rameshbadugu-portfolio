@@ -122,7 +122,7 @@ export default function Hero() {
           </h1>
 
           <p className="reveal-text text-zinc-400 text-base md:text-lg max-w-lg mb-8 leading-relaxed font-sans font-light">
-            I architect scalable enterprise microservices using Java and Spring Boot while building automated intelligence systems powered by LLMs and multi-agent workflows. Bridging robust backend engineering with advanced AI solutions.
+            I have 4+ years of experience in Java full stack development, working with Spring Boot, React.js, Microservices, and REST APIs. Currently, I am learning and exploring AI Agents, MCP, and automation workflows.
           </p>
 
           {/* Action CTAs */}
@@ -151,8 +151,8 @@ export default function Hero() {
             <span className="text-zinc-600 text-xs font-semibold uppercase tracking-wider">Connect:</span>
             {[
               { icon: <GitHubIcon size={18} />, href: 'https://github.com', label: 'GitHub' },
-              { icon: <LinkedInIcon size={18} />, href: 'https://linkedin.com', label: 'LinkedIn' },
-              { icon: <Mail size={18} />, href: 'mailto:ramesh.badugu@example.com', label: 'Email' }
+              { icon: <LinkedInIcon size={18} />, href: 'https://linkedin.com/in/rameshbadugu', label: 'LinkedIn' },
+              { icon: <Mail size={18} />, href: 'mailto:rameshbaduguln@gmail.com', label: 'Email' }
             ].map((social, index) => (
               <motion.a
                 key={index}

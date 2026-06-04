@@ -4,36 +4,36 @@ import { Calendar, Briefcase, ChevronRight } from 'lucide-react';
 
 const experiences = [
   {
-    role: 'Senior Java Full Stack & AI Solutions Engineer',
-    company: 'NextGen Automation Corp',
-    period: '2024 - Present',
-    description: 'Spearheading the fusion of enterprise Spring Boot services with autonomous AI pipelines. Architecting modular system backends while integrating generative AI flows.',
+    role: 'Java Developer',
+    company: 'Fidelity Investments — Boston, United States',
+    period: 'March 2024 – Dec 2025',
+    description: 'Designed and developed scalable full-stack applications for a cloud-based financial platform, focusing on secure API services and responsive user interfaces.',
     achievements: [
-      'Orchestrated custom LangGraph microservices to automate data processing, decreasing workflow runtime by 42%.',
-      'Designed high-performance Spring Boot APIs interacting with vector databases (Pinecone/Chroma) for contextual semantic search.',
-      'Led a team of 4 engineers deploying cloud infrastructure on AWS using Docker, ECS, and Jenkins CI/CD pipelines.'
+      'Built and maintained Spring Boot microservices with OAuth 2.0 authentication and integrated them with React-based frontend applications.',
+      'Implemented RESTful APIs to support high-volume transactions and optimized database performance using Oracle and MySQL.',
+      'Leveraged Docker and Kubernetes for containerized deployments.',
+      'Automated robust CI/CD pipelines using Jenkins.'
     ]
   },
   {
-    role: 'Java Full Stack Developer',
-    company: 'Enterprise Solutions Ltd',
-    period: '2021 - 2024',
-    description: 'Designed and deployed secure web portals and transaction processing backends for financial and retail sectors using Java 17 and Spring Boot.',
+    role: 'Java/J2EE Developer',
+    company: 'Walmart — Bengaluru, India',
+    period: 'Nov 2021 – Dec 2022',
+    description: 'Contributed to the development of Walmart Healthcare’s Medicare platform by building scalable backend microservices and integrating distributed systems through RESTful APIs.',
     achievements: [
-      'Refactored legacy monolith into RESTful microservices, increasing transaction throughput by 30%.',
-      'Engineered state management and interactive layouts on React frontends, improving user engagement rate.',
-      'Optimized database indexing and caching layouts in PostgreSQL/Redis, shaving query latencies by 200ms.'
+      'Implemented real-time data processing using Kafka to improve system responsiveness and reliability.',
+      'Collaborated with frontend teams to enable smooth API integration and enhance user workflows.'
     ]
   },
   {
-    role: 'Associate Software Developer',
-    company: 'Core Systems Inc',
-    period: '2019 - 2021',
-    description: 'Collaborated on developing web interfaces and backend server routines, implementing test scripts, and debugging relational integrations.',
+    role: 'Software Engineer',
+    company: 'Infosys — Bengaluru, India',
+    period: 'June 2020 – Oct 2021',
+    description: 'Worked on modernizing a legacy application by transitioning it to a microservices-based architecture using Spring Boot and React.',
     achievements: [
-      'Built core data migration utilities using Spring Batch, processing millions of legacy rows daily.',
-      'Participated in unit testing using JUnit & Mockito, raising code coverage across backend services to over 85%.',
-      'Created custom automation scrapers in Python, saving team members 10+ manual research hours per week.'
+      'Developed dynamic and responsive frontend components using React.js and integrated them with backend services.',
+      'Built RESTful APIs and implemented secure authentication using OAuth 2.0.',
+      'Improved overall application performance, scalability, and maintainability.'
     ]
   }
 ];

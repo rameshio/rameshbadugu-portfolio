@@ -47,10 +47,10 @@ export default function App() {
 
           <div className="flex flex-col items-center md:items-end text-center md:text-right gap-2 font-mono text-[10px] text-zinc-500">
             <span className="font-semibold text-zinc-400">
-              Designed &amp; Built by Ramesh Badugu
+              &copy; 2026 Ramesh Badugu. All rights reserved.
             </span>
-            <span>
-              &copy; {currentYear} &bull; Built with React, Vite, Tailwind v4, Three.js &amp; GSAP.
+            <span className="text-[9px] text-zinc-600">
+              Designed &amp; Built by Ramesh Badugu &bull; React, Vite, Tailwind v4, Three.js, GSAP
             </span>
           </div>
         </div>

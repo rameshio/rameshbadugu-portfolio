@@ -4,41 +4,52 @@ import { Code2, Cpu, Database, Eye, Terminal } from 'lucide-react';
 
 const skillCategories = [
   {
-    title: 'Backend & Java Ecosystem',
+    title: 'Programming Languages',
     icon: <Code2 className="text-red-500" size={24} />,
-    description: 'Building secure, fault-tolerant enterprise services.',
-    skills: [
-      'Java 17 / 21', 'Spring Boot', 'Spring Cloud', 'Hibernate / JPA', 
-      'Microservices', 'RESTful APIs', 'gRPC & WebSockets', 'JUnit & Mockito'
-    ]
+    description: 'Core languages and programming paradigms.',
+    skills: ['Java', 'Python', 'C++', 'SQL', 'JavaScript', 'TypeScript', 'HTML5', 'CSS3']
   },
   {
-    title: 'AI & Automation Engineering',
-    icon: <Cpu className="text-red-500" size={24} />,
-    description: 'Designing autonomous workflows and LLM applications.',
-    skills: [
-      'LLM Integration (GPT, Claude)', 'LangChain & LangGraph', 'Vector Databases (Chroma, Pinecone)', 
-      'n8n / Make Workflow Automation', 'Multi-Agent Systems (CrewAI)', 'Python & FastAPI', 
-      'Web Scraping & ETL', 'Semantic Search & RAG'
-    ]
-  },
-  {
-    title: 'Databases & Infrastructure',
+    title: 'Backend Development',
     icon: <Database className="text-red-500" size={24} />,
-    description: 'Managing cloud systems and data persistence.',
-    skills: [
-      'PostgreSQL', 'MySQL', 'MongoDB', 'Redis Caching', 
-      'Docker & Containers', 'AWS (S3, EC2, RDS)', 'Kubernetes', 'CI/CD (Jenkins, GitHub Actions)'
-    ]
+    description: 'Architecting secure microservices and REST APIs.',
+    skills: ['Spring Boot', 'Spring Framework', 'Spring Microservices', 'REST APIs', 'Microservices Architecture']
   },
   {
-    title: 'Frontend & Interactive Web',
+    title: 'Frontend Development',
     icon: <Eye className="text-red-500" size={24} />,
-    description: 'Crafting responsive, immersive user interfaces.',
-    skills: [
-      'React & Vite', 'JavaScript (ES6+)', 'Tailwind CSS', 'Redux Toolkit',
-      'Framer Motion', 'Three.js / React Three Fiber', 'GSAP Animations', 'Responsive UI/UX'
-    ]
+    description: 'Crafting responsive user interfaces and frameworks.',
+    skills: ['React.js', 'Angular', 'Responsive Web Design']
+  },
+  {
+    title: 'Cloud & DevOps',
+    icon: <Database className="text-red-500" size={24} />,
+    description: 'CI/CD execution and cloud provisioning.',
+    skills: ['AWS', 'Microsoft Azure', 'Docker', 'Kubernetes', 'Jenkins', 'CI/CD', 'Git', 'GitHub']
+  },
+  {
+    title: 'APIs & Integration',
+    icon: <Code2 className="text-red-500" size={24} />,
+    description: 'Connecting services, endpoints, and distributed apps.',
+    skills: ['REST APIs', 'API Integration', 'Distributed Systems']
+  },
+  {
+    title: 'AI & Automation',
+    icon: <Cpu className="text-red-500" size={24} />,
+    description: 'Developing workflow automations and agentic setups.',
+    skills: ['AI Agents', 'MCP', 'Workflow Automation', 'AI Orchestration', 'Prompt Engineering', 'LLM Integrations']
+  },
+  {
+    title: 'Tools & Platforms',
+    icon: <Terminal className="text-red-500" size={24} />,
+    description: 'Productivity configurations and integrations.',
+    skills: ['VS Code', 'Postman', 'Make.com', 'Slack Integrations']
+  },
+  {
+    title: 'Software Development Practices',
+    icon: <Terminal className="text-red-500" size={24} />,
+    description: 'Methodologies, troubleshooting, and design paradigms.',
+    skills: ['Agile Methodology', 'SDLC', 'Debugging', 'Problem Solving', 'System Design Basics']
   }
 ];
 
