@@ -4,7 +4,7 @@ import { Mail, MapPin, Phone, Send, MessageSquare, ShieldCheck, CheckCircle2 } f
 import emailjs from '@emailjs/browser';
 
 export default function Contact() {
-  const [formState, setFormState] = useState({ name: '', email: '', subject: '', message: '' });
+  const [formState, setFormState] = useState({ from_name: '', from_email: '', subject: '', message: '' });
   const [status, setStatus] = useState('idle'); // idle, sending, success, error
   const formRef = useRef();
 
@@ -14,7 +14,7 @@ export default function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formState.name || !formState.email || !formState.subject || !formState.message) {
+    if (!formState.from_name || !formState.from_email || !formState.subject || !formState.message) {
       setStatus('validation_error');
       return;
     }
@@ -27,7 +27,7 @@ export default function Contact() {
     const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
     if (!serviceID || !templateID || !publicKey) {
-      console.error('EmailJS environment variables are missing');
+      console.error("EmailJS error: Environment variables are missing");
       setStatus('error');
       return;
     }
@@ -37,10 +37,10 @@ export default function Contact() {
     })
       .then(() => {
         setStatus('success');
-        setFormState({ name: '', email: '', subject: '', message: '' });
+        setFormState({ from_name: '', from_email: '', subject: '', message: '' });
       })
       .catch((error) => {
-        console.error('EmailJS sending failed:', error);
+        console.error("EmailJS error:", error);
         setStatus('error');
       });
   };
@@ -84,8 +84,8 @@ export default function Contact() {
               <div className="space-y-3">
                 <div>
                   <span className="text-[10px] text-zinc-500 uppercase font-semibold tracking-wider font-sans">Email Me</span>
-                  <a href="mailto:rameshbaduguln@gmail.com" className="text-sm text-zinc-200 hover:text-red-400 transition-colors font-mono block mt-0.5">
-                    rameshbaduguln@gmail.com
+                  <a href="mailto:rameshbadugums@gmail.com" className="text-sm text-zinc-200 hover:text-red-400 transition-colors font-mono block mt-0.5">
+                    rameshbadugums@gmail.com
                   </a>
                 </div>
                 <div>
@@ -131,15 +131,15 @@ export default function Contact() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {/* Name Input */}
               <div className="flex flex-col text-left">
-                <label htmlFor="name" className="text-[10px] uppercase font-bold tracking-wider text-zinc-500 mb-2 font-sans">
+                <label htmlFor="from_name" className="text-[10px] uppercase font-bold tracking-wider text-zinc-500 mb-2 font-sans">
                   Your Name
                 </label>
                 <input
                   type="text"
-                  id="name"
-                  name="name"
+                  id="from_name"
+                  name="from_name"
                   required
-                  value={formState.name}
+                  value={formState.from_name}
                   onChange={handleChange}
                   placeholder="e.g. Ramesh Badugu"
                   className="px-4 py-3 rounded-xl bg-black/40 text-sm text-white placeholder-zinc-600 border border-red-950/30 focus:border-red-500/50 focus:shadow-[0_0_15px_rgba(239,68,68,0.15)] focus:outline-none transition-all duration-300 font-sans"
@@ -148,15 +148,15 @@ export default function Contact() {
 
               {/* Email Input */}
               <div className="flex flex-col text-left">
-                <label htmlFor="email" className="text-[10px] uppercase font-bold tracking-wider text-zinc-500 mb-2 font-sans">
+                <label htmlFor="from_email" className="text-[10px] uppercase font-bold tracking-wider text-zinc-500 mb-2 font-sans">
                   Your Email
                 </label>
                 <input
                   type="email"
-                  id="email"
-                  name="email"
+                  id="from_email"
+                  name="from_email"
                   required
-                  value={formState.email}
+                  value={formState.from_email}
                   onChange={handleChange}
                   placeholder="e.g. yourname@domain.com"
                   className="px-4 py-3 rounded-xl bg-black/40 text-sm text-white placeholder-zinc-600 border border-red-950/30 focus:border-red-500/50 focus:shadow-[0_0_15px_rgba(239,68,68,0.15)] focus:outline-none transition-all duration-300 font-sans"
@@ -213,8 +213,11 @@ export default function Contact() {
                   </span>
                 )}
                 {status === 'error' && (
-                  <span className="text-red-500 font-semibold text-xs">
-                    Failed to send message. Please try again.
+                  <span className="text-red-500 font-semibold text-xs leading-normal block">
+                    Message failed to send. Please email me directly at{' '}
+                    <a href="mailto:rameshbadugums@gmail.com" className="underline hover:text-red-400 font-mono">
+                      rameshbadugums@gmail.com
+                    </a>.
                   </span>
                 )}
               </div>

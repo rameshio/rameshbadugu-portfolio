@@ -152,7 +152,7 @@ export default function Hero() {
             {[
               { icon: <GitHubIcon size={18} />, href: 'https://github.com', label: 'GitHub' },
               { icon: <LinkedInIcon size={18} />, href: 'https://linkedin.com/in/rameshbadugu', label: 'LinkedIn' },
-              { icon: <Mail size={18} />, href: 'mailto:rameshbaduguln@gmail.com', label: 'Email' }
+              { icon: <Mail size={18} />, href: 'mailto:rameshbadugums@gmail.com', label: 'Email' }
             ].map((social, index) => (
               <motion.a
                 key={index}
