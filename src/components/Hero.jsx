@@ -106,9 +106,14 @@ export default function Hero() {
         {/* Left: Headline & Bio Info */}
         <div className="lg:col-span-7 flex flex-col items-start text-left z-20">
           {/* AI automation badge */}
-          <div className="hero-badge mb-6 px-4 py-1.5 rounded-full glassmorphism text-xs font-semibold text-red-400 border border-red-500/25 flex items-center gap-2 shadow-[0_0_15px_rgba(239,68,68,0.1)]">
-            <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse glow-shadow" />
-            Open to Work & Collaborations
+          <div className="flex flex-wrap gap-2 mb-6">
+            <div className="hero-badge px-4 py-1.5 rounded-full glassmorphism text-xs font-semibold text-red-400 border border-red-500/25 flex items-center gap-2 shadow-[0_0_15px_rgba(239,68,68,0.1)]">
+              <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse glow-shadow" />
+              AI Master's Student
+            </div>
+            <div className="hero-badge px-4 py-1.5 rounded-full glassmorphism text-xs font-semibold text-zinc-300 border border-zinc-500/25 flex items-center gap-2">
+              MCP Learner
+            </div>
           </div>
 
           <h2 className="reveal-text text-zinc-400 font-display font-medium text-lg md:text-xl mb-2 tracking-wide uppercase">
@@ -116,24 +121,32 @@ export default function Hero() {
           </h2>
           
           <h1 className="reveal-text font-display font-black text-4xl sm:text-5xl md:text-6xl tracking-tight leading-[1.08] mb-6">
-            <span className="gradient-text-red">Java Full Stack</span> <br />
-            <span className="text-zinc-500">&amp; AI Automation</span> <br />
-            <span className="text-white glow-text-red">Engineer</span>
+            <span className="gradient-text-red">AI Automation &</span> <br />
+            <span className="text-white glow-text-red">Orchestration Builder</span>
           </h1>
 
           <p className="reveal-text text-zinc-400 text-base md:text-lg max-w-lg mb-8 leading-relaxed font-sans font-light">
-            I have 4+ years of experience in Java full stack development, working with Spring Boot, React.js, Microservices, and REST APIs. Currently, I am learning and exploring AI Agents, MCP, and automation workflows.
+            I’m an AI Master’s student building practical AI assistant workflows with Claude, ChatGPT, Gemini, MCP, APIs, Telegram, Gmail, and automation tools. My main project, Igris, helps me learn how AI systems can support real daily tasks with human approval and responsible workflow design.
           </p>
 
           {/* Action CTAs */}
           <div className="flex flex-wrap gap-4 mb-8">
             <motion.a 
-              href="#experience" 
+              href="#igris" 
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               className="fade-in-btn px-6 py-3.5 rounded-xl text-sm font-semibold tracking-wider text-white bg-gradient-to-r from-red-600 to-red-800 border border-red-500/40 hover:border-red-400 shadow-[0_0_20px_rgba(220,38,38,0.25)] hover:shadow-[0_0_30px_rgba(220,38,38,0.45)] transition-all duration-300 flex items-center gap-2"
             >
-              View Experience <ArrowRight size={16} />
+              View Igris Project <ArrowRight size={16} />
+            </motion.a>
+
+            <motion.a 
+              href="#resume" 
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              className="fade-in-btn px-6 py-3.5 rounded-xl text-sm font-semibold tracking-wider text-zinc-300 hover:text-white glassmorphism glassmorphism-hover border border-red-950/40 flex items-center gap-2"
+            >
+              Download Resume <Download size={16} />
             </motion.a>
             
             <motion.a 
@@ -205,7 +218,7 @@ export default function Hero() {
               {/* Name caption on bottom of profile */}
               <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
                 <span className="text-xs font-display font-medium uppercase tracking-wider text-red-400 bg-black/50 px-2 py-0.5 rounded backdrop-blur-sm border border-red-500/10">
-                  AI Automation Eng
+                  AI Master's Student
                 </span>
                 <span className="text-[10px] font-sans text-zinc-400 bg-black/50 px-1.5 py-0.5 rounded backdrop-blur-sm border border-zinc-500/10">
                   Ramesh Badugu

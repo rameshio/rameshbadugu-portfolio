@@ -6,6 +6,8 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Skills from './components/Skills';
 import Experience from './components/Experience';
+import Igris from './components/Igris';
+import Projects from './components/Projects';
 
 import Resume from './components/Resume';
 import Contact from './components/Contact';
@@ -27,7 +29,9 @@ export default function App() {
         <Hero />
         <About />
         <Skills />
+        <Igris />
         <Experience />
+        <Projects />
 
         <Resume />
         <Contact />
@@ -41,7 +45,7 @@ export default function App() {
               Ramesh<span className="text-red-500 font-extrabold">Badugu</span>
             </a>
             <p className="text-xs text-zinc-600 mt-2 max-w-sm leading-relaxed font-sans font-light">
-              Java Full Stack &amp; AI Automation Engineer. Crafting highly optimized backend architectures and automated workflow pipelines.
+              AI Master's student building practical AI assistant workflows, MCP concepts, and automation systems.
             </p>
           </div>
 

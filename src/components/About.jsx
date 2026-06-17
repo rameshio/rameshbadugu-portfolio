@@ -49,76 +49,18 @@ export default function About() {
         <div className="w-16 h-1 bg-red-600 rounded-full mt-4 shadow-[0_0_10px_#ef4444]" />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-        {/* Left: Detail Narrative Paragraphs */}
-        <div className="lg:col-span-7 space-y-6 text-left">
-          <h3 className="about-reveal text-xl md:text-2xl font-display font-bold text-white leading-snug">
-            Developing scalable backend architectures, full stack apps, and automated workflows.
-          </h3>
-          
-          <p className="about-reveal text-zinc-400 font-sans leading-relaxed font-light text-base">
-            I have 4+ years of experience in Java full stack development, working with Spring Boot, React.js, Microservices, and REST APIs. I specialize in developing, maintaining, and scaling enterprise web applications and backend systems.
-          </p>
-          
-          <p className="about-reveal text-zinc-400 font-sans leading-relaxed font-light text-base">
-            Currently, I am learning and exploring AI Agents, Model Context Protocol (MCP), and automation workflows to build next-generation intelligent business automation systems.
-          </p>
+      <div className="max-w-4xl mx-auto space-y-8 text-center md:text-left">
+        <p className="about-reveal text-zinc-300 font-sans leading-relaxed font-light text-lg md:text-xl">
+          I am an AI Master’s student who builds the things I study. My main personal project, Igris, connects Claude, MCP, APIs, and automation tools into a working assistant concept that supports email summaries, job tracking, Telegram notifications, browser tasks, and human-approved workflows.
+        </p>
+        
+        <p className="about-reveal text-zinc-300 font-sans leading-relaxed font-light text-lg md:text-xl">
+          I am drawn to the orchestration layer: how AI tools talk to each other, how workflows are designed, and how organizations like nonprofits, schools, and small teams can use AI without it feeling overwhelming or risky.
+        </p>
 
-          {/* Key pillars */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
-            <div className="about-reveal flex items-start gap-3 p-4 rounded-xl glassmorphism border border-red-950/20">
-              <div className="p-2 rounded-lg bg-red-950/40 text-red-500 border border-red-500/10">
-                <ShieldCheck size={20} />
-              </div>
-              <div>
-                <h4 className="font-display font-bold text-sm text-white">Scalable Architecture</h4>
-                <p className="text-xs text-zinc-400 mt-1">High throughput RESTful APIs and distributed message-driven systems.</p>
-              </div>
-            </div>
-
-            <div className="about-reveal flex items-start gap-3 p-4 rounded-xl glassmorphism border border-red-950/20">
-              <div className="p-2 rounded-lg bg-red-950/40 text-red-500 border border-red-500/10">
-                <Cpu size={20} />
-              </div>
-              <div>
-                <h4 className="font-display font-bold text-sm text-white">AI Agents &amp; MCP</h4>
-                <p className="text-xs text-zinc-400 mt-1">Exploring Model Context Protocol, workflow automation, and agentic systems integration.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Right: Modern Grid Stat Blocks */}
-        <div className="lg:col-span-5 grid grid-cols-2 gap-4">
-          {stats.map((stat, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: idx * 0.1, ease: 'easeOut' }}
-              whileHover={{ 
-                scale: 1.03,
-                borderColor: 'rgba(239, 68, 68, 0.35)',
-                boxShadow: '0 10px 30px -10px rgba(239, 68, 68, 0.2)' 
-              }}
-              className="glassmorphism p-6 rounded-2xl border border-red-950/20 text-center flex flex-col items-center justify-center transition-all duration-300 relative overflow-hidden group"
-            >
-              {/* Subtle background red glow on hover */}
-              <div className="absolute inset-0 bg-radial-[circle_at_center,rgba(220,38,38,0.05)_0%,transparent_70%] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-              
-              <div className="p-3 rounded-xl bg-red-950/20 border border-red-500/5 mb-3 group-hover:scale-110 transition-transform duration-300">
-                {stat.icon}
-              </div>
-              <span className="font-display font-black text-3xl text-white glow-text-red block mb-1">
-                {stat.value}
-              </span>
-              <span className="font-sans text-xs font-semibold uppercase tracking-wider text-zinc-500 group-hover:text-zinc-400 transition-colors">
-                {stat.label}
-              </span>
-            </motion.div>
-          ))}
-        </div>
+        <p className="about-reveal text-zinc-300 font-sans leading-relaxed font-light text-lg md:text-xl">
+          My goal is to grow into someone who can design, explain, and run useful AI systems at real-world scale.
+        </p>
       </div>
     </section>
   );

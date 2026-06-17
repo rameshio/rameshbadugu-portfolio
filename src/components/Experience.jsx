@@ -1,39 +1,50 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, Briefcase, ChevronRight } from 'lucide-react';
+import { BookOpen, Laptop, ChevronRight, Workflow, Users } from 'lucide-react';
 
 const experiences = [
   {
-    role: 'Java Developer',
-    company: 'Fidelity Investments — Boston, United States',
-    period: 'March 2024 – Dec 2025',
-    description: 'Designed and developed scalable full-stack applications for a cloud-based financial platform, focusing on secure API services and responsive user interfaces.',
+    role: 'AI Assistant Workflow Design',
+    icon: <Workflow size={16} className="text-zinc-600" />,
+    description: 'Learning how to orchestrate multiple AI models and external tools to build practical, real-world assistants.',
     achievements: [
-      'Built and maintained Spring Boot microservices with OAuth 2.0 authentication and integrated them with React-based frontend applications.',
-      'Implemented RESTful APIs to support high-volume transactions and optimized database performance using Oracle and MySQL.',
-      'Leveraged Docker and Kubernetes for containerized deployments.',
-      'Automated robust CI/CD pipelines using Jenkins.'
+      'Learning how to connect AI models (Claude, ChatGPT, Gemini) with APIs and tools.',
+      'Practicing the Model Context Protocol (MCP) to allow AI agents to safely access files and web services.',
+      'Building the Igris personal assistant to automate email summaries and track jobs.',
+      'Implementing human-in-the-loop approvals for important automated actions.'
     ]
   },
   {
-    role: 'Java/J2EE Developer',
-    company: 'Walmart — Bengaluru, India',
-    period: 'Nov 2021 – Dec 2022',
-    description: 'Contributed to the development of Walmart Healthcare’s Medicare platform by building scalable backend microservices and integrating distributed systems through RESTful APIs.',
+    role: 'AI Portfolio Development',
+    icon: <Laptop size={16} className="text-zinc-600" />,
+    description: 'Building and maintaining a modern web application to showcase my learning journey and projects.',
     achievements: [
-      'Implemented real-time data processing using Kafka to improve system responsiveness and reliability.',
-      'Collaborated with frontend teams to enable smooth API integration and enhance user workflows.'
+      'Built a personal portfolio website from scratch using React, Vite, and Tailwind CSS.',
+      'Practiced using AI coding tools to debug layouts and improve responsive design.',
+      'Learned how to deploy applications on Vercel and connect custom domains.',
+      'Integrated an automated contact form using EmailJS and secure environment variables.'
     ]
   },
   {
-    role: 'Software Engineer',
-    company: 'Infosys — Bengaluru, India',
-    period: 'June 2020 – Oct 2021',
-    description: 'Worked on modernizing a legacy application by transitioning it to a microservices-based architecture using Spring Boot and React.',
+    role: 'AI Tools and Automation Practice',
+    icon: <BookOpen size={16} className="text-zinc-600" />,
+    description: 'Hands-on practice with prompt engineering, local models, and automation scripts.',
     achievements: [
-      'Developed dynamic and responsive frontend components using React.js and integrated them with backend services.',
-      'Built RESTful APIs and implemented secure authentication using OAuth 2.0.',
-      'Improved overall application performance, scalability, and maintainability.'
+      'Exploring how to automate daily workflows like sending Telegram notifications and processing Gmail data.',
+      'Testing different prompt engineering techniques to get reliable responses from language models.',
+      'Evaluating local AI models versus cloud-based models for different automation tasks.',
+      'Breaking down complex tasks into smaller, testable automation steps.'
+    ]
+  },
+  {
+    role: 'Communication and Documentation',
+    icon: <Users size={16} className="text-zinc-600" />,
+    description: 'Developing soft skills to effectively share knowledge and build trust with users.',
+    achievements: [
+      'Practicing how to explain technical AI concepts simply to non-technical audiences.',
+      'Writing clear documentation for personal projects to understand them better later.',
+      'Learning how to structure information effectively for potential teammates and recruiters.',
+      'Focusing on transparency and responsible AI usage in all projects.'
     ]
   }
 ];
@@ -52,22 +63,17 @@ export default function Experience() {
           My Journey
         </motion.span>
         <h2 className="font-display font-black text-3xl md:text-5xl text-white tracking-tight">
-          Work <span className="gradient-text-red">Experience</span>
+          Learning & Building <span className="gradient-text-red">Experience</span>
         </h2>
         <div className="w-16 h-1 bg-red-600 rounded-full mt-4 shadow-[0_0_10px_#ef4444]" />
       </div>
 
       {/* Timeline track container */}
-      <div className="relative border-l border-red-950/40 ml-4 md:ml-32 space-y-12">
+      <div className="relative border-l border-red-950/40 ml-4 md:ml-8 space-y-12">
         {experiences.map((exp, idx) => (
           <div key={idx} className="relative">
             {/* Timeline Dot Marker */}
             <div className="absolute -left-[9px] top-6 w-4 h-4 rounded-full bg-[#030303] border border-red-500 timeline-dot z-20 flex items-center justify-center" />
-            
-            {/* Date Tag Left Aligned (Desktop Only) */}
-            <div className="hidden md:block absolute -left-36 top-5 w-28 text-right pr-6 font-display font-bold text-sm text-red-500/80 tracking-wide">
-              {exp.period}
-            </div>
 
             {/* Content Card container */}
             <motion.div
@@ -84,12 +90,6 @@ export default function Experience() {
             >
               {/* Subtle top left bar accent */}
               <div className="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-red-600 to-transparent opacity-40 group-hover:opacity-100 transition-opacity duration-300" />
-              
-              {/* Date tag mobile view */}
-              <div className="md:hidden flex items-center gap-1.5 font-display text-xs font-bold text-red-500 mb-2">
-                <Calendar size={12} />
-                {exp.period}
-              </div>
 
               {/* Title & Metadata */}
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
@@ -98,8 +98,8 @@ export default function Experience() {
                     {exp.role}
                   </h3>
                   <span className="font-sans text-sm font-semibold text-zinc-400 flex items-center gap-1.5 mt-1">
-                    <Briefcase size={13} className="text-zinc-600" />
-                    {exp.company}
+                    {exp.icon}
+                    Learning & Practice
                   </span>
                 </div>
               </div>

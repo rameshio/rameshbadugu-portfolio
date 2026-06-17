@@ -71,7 +71,7 @@ export default function Contact() {
               Let's build something epic
             </h3>
             <p className="text-zinc-400 text-sm leading-relaxed font-sans font-light mb-8">
-              Whether you need to scale database services, migrate architecture to Spring Boot microservices, or automate complex business procedures with AI Agents, reach out. Let's start the conversation.
+              Whether you want to discuss AI automation, agentic workflows, or collaboration opportunities, reach out. Let's start the conversation.
             </p>
           </div>
 
@@ -81,10 +81,10 @@ export default function Contact() {
               <div className="p-3 rounded-lg bg-red-950/30 border border-red-500/15 text-red-500 mt-1">
                 <Mail size={18} />
               </div>
-              <div className="space-y-3">
+              <div className="space-y-3 w-full">
                 <div>
                   <span className="text-[10px] text-zinc-500 uppercase font-semibold tracking-wider font-sans">Email Me</span>
-                  <a href="mailto:rameshbadugums@gmail.com" className="text-sm text-zinc-200 hover:text-red-400 transition-colors font-mono block mt-0.5">
+                  <a href="mailto:rameshbadugums@gmail.com" className="text-sm text-zinc-200 hover:text-red-400 transition-colors font-mono block mt-0.5 break-all">
                     rameshbadugums@gmail.com
                   </a>
                 </div>
@@ -92,6 +92,18 @@ export default function Contact() {
                   <span className="text-[10px] text-zinc-500 uppercase font-semibold tracking-wider font-sans">Phone</span>
                   <a href="tel:+19083095257" className="text-sm text-zinc-200 hover:text-red-400 transition-colors font-mono block mt-0.5">
                     +1 908-309-5257
+                  </a>
+                </div>
+                <div>
+                  <span className="text-[10px] text-zinc-500 uppercase font-semibold tracking-wider font-sans">LinkedIn</span>
+                  <a href="https://linkedin.com/in/rameshbadugu" target="_blank" rel="noopener noreferrer" className="text-sm text-zinc-200 hover:text-red-400 transition-colors font-mono block mt-0.5">
+                    linkedin.com/in/rameshbadugu
+                  </a>
+                </div>
+                <div>
+                  <span className="text-[10px] text-zinc-500 uppercase font-semibold tracking-wider font-sans">Website</span>
+                  <a href="https://rameshbaduguai.com" target="_blank" rel="noopener noreferrer" className="text-sm text-zinc-200 hover:text-red-400 transition-colors font-mono block mt-0.5">
+                    rameshbaduguai.com
                   </a>
                 </div>
               </div>

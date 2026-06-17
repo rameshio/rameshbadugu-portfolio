@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { GraduationCap, Award, Download, FileCheck, CheckCircle } from 'lucide-react';
+import { GraduationCap, Download, FileCheck, CheckCircle } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 const education = [
@@ -18,28 +18,6 @@ const education = [
   }
 ];
 
-const certifications = [
-  {
-    title: 'Oracle Certified Professional: Java SE Developer',
-    issuer: 'Oracle Corporation',
-    date: '2022'
-  },
-  {
-    title: 'AWS Certified Developer – Associate',
-    issuer: 'Amazon Web Services',
-    date: '2023'
-  },
-  {
-    title: 'LangChain & Generative AI Solutions Architect',
-    issuer: 'DeepLearning.AI',
-    date: '2024'
-  },
-  {
-    title: 'Professional Workflow Automation Developer',
-    issuer: 'n8n Academy',
-    date: '2025'
-  }
-];
 
 export default function Resume() {
   const handleConfetti = () => {
@@ -64,14 +42,14 @@ export default function Resume() {
           My Credentials
         </motion.span>
         <h2 className="font-display font-black text-3xl md:text-5xl text-white tracking-tight">
-          Curriculum <span className="gradient-text-red">Vitae</span>
+          AI Automation & <span className="gradient-text-red">Orchestration Resume</span>
         </h2>
         <div className="w-16 h-1 bg-red-600 rounded-full mt-4 shadow-[0_0_10px_#ef4444]" />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16 items-start">
-        {/* Left Column: Education */}
-        <div className="lg:col-span-7 text-left space-y-8">
+      <div className="max-w-3xl mx-auto mb-16 items-start">
+        {/* Education */}
+        <div className="text-left space-y-8">
           <div className="flex items-center gap-3 mb-6">
             <div className="p-2 rounded-xl bg-red-950/30 border border-red-500/15 text-red-500">
               <GraduationCap size={22} />
@@ -106,42 +84,6 @@ export default function Resume() {
             ))}
           </div>
         </div>
-
-        {/* Right Column: Certifications */}
-        <div className="lg:col-span-5 text-left space-y-6">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="p-2 rounded-xl bg-red-950/30 border border-red-500/15 text-red-500">
-              <Award size={22} />
-            </div>
-            <h3 className="font-display font-extrabold text-xl text-white">Certifications</h3>
-          </div>
-
-          <div className="space-y-4">
-            {certifications.map((cert, idx) => (
-              <motion.div
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: idx * 0.1 }}
-                whileHover={{ x: 3, borderColor: 'rgba(239, 68, 68, 0.2)' }}
-                key={idx}
-                className="p-4 rounded-xl glassmorphism border border-red-950/20 flex justify-between items-center transition-all duration-300 group"
-              >
-                <div>
-                  <h4 className="font-display font-bold text-sm text-white group-hover:text-red-400 transition-colors">
-                    {cert.title}
-                  </h4>
-                  <span className="text-[10px] text-zinc-500 mt-1 block">
-                    Issued by: {cert.issuer}
-                  </span>
-                </div>
-                <span className="text-[10px] font-mono font-semibold text-red-500 bg-red-950/20 px-2 py-0.5 rounded border border-red-500/10 shrink-0 ml-4">
-                  {cert.date}
-                </span>
-              </motion.div>
-            ))}
-          </div>
-        </div>
       </div>
 
       {/* Downloader Section (confetti download button) */}
@@ -156,10 +98,10 @@ export default function Resume() {
         
         <div className="text-left max-w-xl">
           <h3 className="font-display font-extrabold text-xl md:text-2xl text-white mb-2">
-            Interested in my detailed work records?
+            AI Automation & Orchestration Resume
           </h3>
           <p className="text-zinc-500 text-xs md:text-sm font-sans font-light leading-relaxed">
-            Download my comprehensive resume outlining enterprise microservices architecture, API security specifications, and real-world AI pipeline implementations.
+            This resume highlights my AI learning journey, Igris personal assistant project, MCP and automation interests, technical tools, and communication strengths.
           </p>
         </div>
 

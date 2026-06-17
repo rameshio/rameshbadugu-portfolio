@@ -4,52 +4,34 @@ import { Code2, Cpu, Database, Eye, Terminal } from 'lucide-react';
 
 const skillCategories = [
   {
-    title: 'Programming Languages',
-    icon: <Code2 className="text-red-500" size={24} />,
-    description: 'Core languages and programming paradigms.',
-    skills: ['Java', 'Python', 'C++', 'SQL', 'JavaScript', 'TypeScript', 'HTML5', 'CSS3']
-  },
-  {
-    title: 'Backend Development',
-    icon: <Database className="text-red-500" size={24} />,
-    description: 'Architecting secure microservices and REST APIs.',
-    skills: ['Spring Boot', 'Spring Framework', 'Spring Microservices', 'REST APIs', 'Microservices Architecture']
-  },
-  {
-    title: 'Frontend Development',
-    icon: <Eye className="text-red-500" size={24} />,
-    description: 'Crafting responsive user interfaces and frameworks.',
-    skills: ['React.js', 'Angular', 'Responsive Web Design']
-  },
-  {
-    title: 'Cloud & DevOps',
-    icon: <Database className="text-red-500" size={24} />,
-    description: 'CI/CD execution and cloud provisioning.',
-    skills: ['AWS', 'Microsoft Azure', 'Docker', 'Kubernetes', 'Jenkins', 'CI/CD', 'Git', 'GitHub']
-  },
-  {
-    title: 'APIs & Integration',
-    icon: <Code2 className="text-red-500" size={24} />,
-    description: 'Connecting services, endpoints, and distributed apps.',
-    skills: ['REST APIs', 'API Integration', 'Distributed Systems']
-  },
-  {
-    title: 'AI & Automation',
+    title: 'AI Tools',
     icon: <Cpu className="text-red-500" size={24} />,
-    description: 'Developing workflow automations and agentic setups.',
-    skills: ['AI Agents', 'MCP', 'Workflow Automation', 'AI Orchestration', 'Prompt Engineering', 'LLM Integrations']
+    description: 'Prompt writing and AI workflow design.',
+    skills: ['Claude', 'ChatGPT', 'Gemini', 'AI coding assistants', 'Prompt writing', 'AI workflow design']
   },
   {
-    title: 'Tools & Platforms',
-    icon: <Terminal className="text-red-500" size={24} />,
-    description: 'Productivity configurations and integrations.',
-    skills: ['VS Code', 'Postman', 'Make.com', 'Slack Integrations']
+    title: 'AI Concepts',
+    icon: <Eye className="text-red-500" size={24} />,
+    description: 'Understanding orchestration and agents.',
+    skills: ['MCP', 'AI agents', 'AI orchestration', 'Human-approved workflows', 'Responsible AI', 'Automation']
   },
   {
-    title: 'Software Development Practices',
+    title: 'Automation & Tools',
     icon: <Terminal className="text-red-500" size={24} />,
-    description: 'Methodologies, troubleshooting, and design paradigms.',
-    skills: ['Agile Methodology', 'SDLC', 'Debugging', 'Problem Solving', 'System Design Basics']
+    description: 'Connecting APIs and automation tools.',
+    skills: ['APIs', 'Telegram bots', 'Gmail workflows', 'Browser automation concepts', 'GitHub', 'VS Code']
+  },
+  {
+    title: 'Basic Technical Skills',
+    icon: <Code2 className="text-red-500" size={24} />,
+    description: 'Core languages and development foundation.',
+    skills: ['Python', 'JavaScript', 'TypeScript', 'HTML', 'CSS', 'SQL']
+  },
+  {
+    title: 'Communication',
+    icon: <Database className="text-red-500" size={24} />,
+    description: 'Explaining concepts clearly to teams.',
+    skills: ['Explaining technical ideas simply', 'Documentation', 'Teamwork', 'Fast learning', 'Problem solving']
   }
 ];
 
