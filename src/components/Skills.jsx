@@ -19,13 +19,13 @@ const skillCategories = [
     title: 'Automation & Tools',
     icon: <Terminal className="text-red-500" size={24} />,
     description: 'Connecting APIs and automation tools.',
-    skills: ['APIs', 'Telegram bots', 'Gmail workflows', 'Browser automation concepts', 'GitHub', 'VS Code']
+    skills: ['APIs', 'REST APIs', 'Telegram bots', 'Gmail workflows', 'Browser automation concepts', 'Git', 'GitHub', 'Maven', 'Jenkins', 'VS Code', 'Postman']
   },
   {
     title: 'Basic Technical Skills',
     icon: <Code2 className="text-red-500" size={24} />,
     description: 'Core languages and development foundation.',
-    skills: ['Python', 'JavaScript', 'TypeScript', 'HTML', 'CSS', 'SQL']
+    skills: ['Java', 'Spring Boot', 'React.js', 'Python', 'JavaScript', 'TypeScript', 'HTML', 'CSS', 'SQL', 'Oracle', 'MySQL', 'OAuth 2.0', 'JWT', 'JUnit']
   },
   {
     title: 'Communication',

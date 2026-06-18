@@ -109,10 +109,10 @@ export default function Hero() {
           <div className="flex flex-wrap gap-2 mb-6">
             <div className="hero-badge px-4 py-1.5 rounded-full glassmorphism text-xs font-semibold text-red-400 border border-red-500/25 flex items-center gap-2 shadow-[0_0_15px_rgba(239,68,68,0.1)]">
               <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse glow-shadow" />
-              AI Master's Student
+              Software Developer
             </div>
             <div className="hero-badge px-4 py-1.5 rounded-full glassmorphism text-xs font-semibold text-zinc-300 border border-zinc-500/25 flex items-center gap-2">
-              MCP Learner
+              Java Developer
             </div>
           </div>
 
@@ -126,7 +126,7 @@ export default function Hero() {
           </h1>
 
           <p className="reveal-text text-zinc-400 text-base md:text-lg max-w-lg mb-8 leading-relaxed font-sans font-light">
-            I’m an AI Master’s student building practical AI assistant workflows with Claude, ChatGPT, Gemini, MCP, APIs, Telegram, Gmail, and automation tools. My main project, Igris, helps me learn how AI systems can support real daily tasks with human approval and responsible workflow design.
+            I’m a Software Developer and AI Master’s student bridging production-grade backend development with hands-on AI automation workflows. My personal project, Igris, helps me learn how AI systems can coordinate securely with APIs, Telegram, and Gmail for responsible workflow design.
           </p>
 
           {/* Action CTAs */}

@@ -42,7 +42,7 @@ export default function Resume() {
           My Credentials
         </motion.span>
         <h2 className="font-display font-black text-3xl md:text-5xl text-white tracking-tight">
-          AI Automation & <span className="gradient-text-red">Orchestration Resume</span>
+          Software Developer & <span className="gradient-text-red">AI Automation Resume</span>
         </h2>
         <div className="w-16 h-1 bg-red-600 rounded-full mt-4 shadow-[0_0_10px_#ef4444]" />
       </div>
@@ -98,10 +98,10 @@ export default function Resume() {
         
         <div className="text-left max-w-xl">
           <h3 className="font-display font-extrabold text-xl md:text-2xl text-white mb-2">
-            AI Automation & Orchestration Resume
+            Software Developer & AI Automation Resume
           </h3>
           <p className="text-zinc-500 text-xs md:text-sm font-sans font-light leading-relaxed">
-            This resume highlights my AI learning journey, Igris personal assistant project, MCP and automation interests, technical tools, and communication strengths.
+            This resume highlights my professional Java development experience, AI learning journey, Igris personal assistant project, technical tools, and communication strengths.
           </p>
         </div>
 

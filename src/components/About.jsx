@@ -51,15 +51,15 @@ export default function About() {
 
       <div className="max-w-4xl mx-auto space-y-8 text-center md:text-left">
         <p className="about-reveal text-zinc-300 font-sans leading-relaxed font-light text-lg md:text-xl">
-          I am an AI Master’s student who builds the things I study. My main personal project, Igris, connects Claude, MCP, APIs, and automation tools into a working assistant concept that supports email summaries, job tracking, Telegram notifications, browser tasks, and human-approved workflows.
+          I am a Software developer with professional experience building and maintaining financial web applications using Java, Spring Boot, and React.js at Vanguard and Infosys, currently pursuing a Master of Science in Artificial Intelligence. I bridge production-grade backend and frontend development with hands-on AI automation through my personal project Igris — a multi-tool AI assistant that integrates Claude, MCP, REST APIs, and human-in-the-loop workflows for email management, job tracking, and browser automation.
         </p>
         
         <p className="about-reveal text-zinc-300 font-sans leading-relaxed font-light text-lg md:text-xl">
-          I am drawn to the orchestration layer: how AI tools talk to each other, how workflows are designed, and how organizations like nonprofits, schools, and small teams can use AI without it feeling overwhelming or risky.
+          I am drawn to the orchestration layer of AI systems: how agents, tools, and APIs coordinate securely, and how organizations can adopt AI responsibly without it feeling overwhelming.
         </p>
 
         <p className="about-reveal text-zinc-300 font-sans leading-relaxed font-light text-lg md:text-xl">
-          My goal is to grow into someone who can design, explain, and run useful AI systems at real-world scale.
+          My goal is to design and deploy scalable, explainable AI-powered systems at real-world scale.
         </p>
       </div>
     </section>

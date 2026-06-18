@@ -45,7 +45,7 @@ export default function App() {
               Ramesh<span className="text-red-500 font-extrabold">Badugu</span>
             </a>
             <p className="text-xs text-zinc-600 mt-2 max-w-sm leading-relaxed font-sans font-light">
-              AI Master's student building practical AI assistant workflows, MCP concepts, and automation systems.
+              Software Developer & AI Master's student bridging production-grade backend development with hands-on AI automation.
             </p>
           </div>
 

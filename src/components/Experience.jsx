@@ -1,50 +1,33 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { BookOpen, Laptop, ChevronRight, Workflow, Users } from 'lucide-react';
+import { Calendar, Briefcase, ChevronRight } from 'lucide-react';
 
 const experiences = [
   {
-    role: 'AI Assistant Workflow Design',
-    icon: <Workflow size={16} className="text-zinc-600" />,
-    description: 'Learning how to orchestrate multiple AI models and external tools to build practical, real-world assistants.',
+    role: 'Java Developer Intern / Junior Java Developer',
+    company: 'Vanguard — Malvern, United States',
+    period: 'Aug 2024 – Sep 2025',
+    description: 'Supported the development and maintenance of a financial web application managing customer and account-related workflows. Contributed to Java backend development, frontend enhancements, REST API testing, and bug resolution while working under senior developer guidance in an Agile delivery environment.',
     achievements: [
-      'Learning how to connect AI models (Claude, ChatGPT, Gemini) with APIs and tools.',
-      'Practicing the Model Context Protocol (MCP) to allow AI agents to safely access files and web services.',
-      'Building the Igris personal assistant to automate email summaries and track jobs.',
-      'Implementing human-in-the-loop approvals for important automated actions.'
+      'Developed and maintained backend modules using Java and Spring Boot for financial customer and account workflows.',
+      'Built and updated REST API endpoints to support frontend integration and business requirements, ensuring accurate data exchange.',
+      'Implemented frontend changes using React.js, HTML, CSS, and JavaScript, improving page layouts and form validations.',
+      'Performed API testing and validation using Postman to verify endpoint functionality and integration stability.',
+      'Wrote and optimized SQL queries for data retrieval, validation, and application support.',
+      'Authored unit test cases with guidance from senior developers to validate core functionality.',
+      'Managed source code using Git and collaborated in daily Agile stand-ups.'
     ]
   },
   {
-    role: 'AI Portfolio Development',
-    icon: <Laptop size={16} className="text-zinc-600" />,
-    description: 'Building and maintaining a modern web application to showcase my learning journey and projects.',
+    role: 'Junior Software Developer / Software Engineer',
+    company: 'Infosys — Bengaluru, India',
+    period: 'Mar 2022 – Dec 2022',
+    description: 'Enhancement of a legacy web application aimed at modernizing the user interface, improving application maintainability, and ensuring seamless integration between frontend and backend systems.',
     achievements: [
-      'Built a personal portfolio website from scratch using React, Vite, and Tailwind CSS.',
-      'Practiced using AI coding tools to debug layouts and improve responsive design.',
-      'Learned how to deploy applications on Vercel and connect custom domains.',
-      'Integrated an automated contact form using EmailJS and secure environment variables.'
-    ]
-  },
-  {
-    role: 'AI Tools and Automation Practice',
-    icon: <BookOpen size={16} className="text-zinc-600" />,
-    description: 'Hands-on practice with prompt engineering, local models, and automation scripts.',
-    achievements: [
-      'Exploring how to automate daily workflows like sending Telegram notifications and processing Gmail data.',
-      'Testing different prompt engineering techniques to get reliable responses from language models.',
-      'Evaluating local AI models versus cloud-based models for different automation tasks.',
-      'Breaking down complex tasks into smaller, testable automation steps.'
-    ]
-  },
-  {
-    role: 'Communication and Documentation',
-    icon: <Users size={16} className="text-zinc-600" />,
-    description: 'Developing soft skills to effectively share knowledge and build trust with users.',
-    achievements: [
-      'Practicing how to explain technical AI concepts simply to non-technical audiences.',
-      'Writing clear documentation for personal projects to understand them better later.',
-      'Learning how to structure information effectively for potential teammates and recruiters.',
-      'Focusing on transparency and responsible AI usage in all projects.'
+      'Developed and enhanced React.js UI components using HTML, CSS, and JavaScript to modernize legacy application screens.',
+      'Implemented Java and Spring Boot backend modifications and integrated frontend pages with REST APIs.',
+      'Identified, debugged, and resolved UI and functionality bugs while performing feature testing.',
+      'Utilized Git for version control and supported build and deployment processes using Maven and Jenkins.'
     ]
   }
 ];
@@ -63,17 +46,22 @@ export default function Experience() {
           My Journey
         </motion.span>
         <h2 className="font-display font-black text-3xl md:text-5xl text-white tracking-tight">
-          Learning & Building <span className="gradient-text-red">Experience</span>
+          Professional <span className="gradient-text-red">Experience</span>
         </h2>
         <div className="w-16 h-1 bg-red-600 rounded-full mt-4 shadow-[0_0_10px_#ef4444]" />
       </div>
 
       {/* Timeline track container */}
-      <div className="relative border-l border-red-950/40 ml-4 md:ml-8 space-y-12">
+      <div className="relative border-l border-red-950/40 ml-4 md:ml-32 space-y-12">
         {experiences.map((exp, idx) => (
           <div key={idx} className="relative">
             {/* Timeline Dot Marker */}
             <div className="absolute -left-[9px] top-6 w-4 h-4 rounded-full bg-[#030303] border border-red-500 timeline-dot z-20 flex items-center justify-center" />
+            
+            {/* Date Tag Left Aligned (Desktop Only) */}
+            <div className="hidden md:block absolute -left-36 top-5 w-28 text-right pr-6 font-display font-bold text-sm text-red-500/80 tracking-wide">
+              {exp.period}
+            </div>
 
             {/* Content Card container */}
             <motion.div
@@ -90,6 +78,12 @@ export default function Experience() {
             >
               {/* Subtle top left bar accent */}
               <div className="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-red-600 to-transparent opacity-40 group-hover:opacity-100 transition-opacity duration-300" />
+              
+              {/* Date tag mobile view */}
+              <div className="md:hidden flex items-center gap-1.5 font-display text-xs font-bold text-red-500 mb-2">
+                <Calendar size={12} />
+                {exp.period}
+              </div>
 
               {/* Title & Metadata */}
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
@@ -98,8 +92,8 @@ export default function Experience() {
                     {exp.role}
                   </h3>
                   <span className="font-sans text-sm font-semibold text-zinc-400 flex items-center gap-1.5 mt-1">
-                    {exp.icon}
-                    Learning & Practice
+                    <Briefcase size={13} className="text-zinc-600" />
+                    {exp.company}
                   </span>
                 </div>
               </div>
