@@ -1,65 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @import "tailwindcss";
 
 @theme {
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-display: 'Outfit', system-ui, -apple-system, sans-serif;
-  
-  --color-red-primary: #dc2626;
-  --color-red-accent: #ef4444;
-  --color-red-dark: #1f0404;
-  --color-red-deep: #0c0101;
-  --color-black-deep: #030303;
-  --color-black-card: rgba(18, 12, 12, 0.35);
-  
-  --animate-float: float 6s ease-in-out infinite;
-  --animate-float-delayed: float-delayed 8s ease-in-out infinite;
-  --animate-pulse-slow: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  --animate-glow: glow-shadow 3s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-15px) rotate(1deg);
-  }
-}
-
-@keyframes float-delayed {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(15px) rotate(-1deg);
-  }
-}
-
-@keyframes pulse-slow {
-  0%, 100% {
-    opacity: 0.15;
-  }
-  50% {
-    opacity: 0.35;
-  }
-}
-
-@keyframes glow-shadow {
-  0%, 100% {
-    box-shadow: 0 0 15px rgba(220, 38, 38, 0.25);
-  }
-  50% {
-    box-shadow: 0 0 30px rgba(220, 38, 38, 0.45);
-  }
+  --font-display: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
 /* Global Reset and Styles */
 html {
   scroll-behavior: smooth;
-  background-color: #030303;
-  color: #f4f4f5;
+  background-color: #fafafa;
+  color: #111827;
   overflow-x: hidden;
   font-family: var(--font-sans);
 }
@@ -67,91 +19,80 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background-color: #030303;
+  background-color: #fafafa;
   min-height: 100vh;
   box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Custom Scrollbar */
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid #2563eb;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Custom Scrollbar - Minimal */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #030303;
+  background: #fafafa;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #270606;
+  background: #d1d5db;
   border-radius: 4px;
-  border: 1px solid #1a0404;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #ef4444;
+  background: #9ca3af;
 }
 
-/* Custom Utilities */
-.glassmorphism {
-  background: rgba(18, 12, 12, 0.45);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(239, 68, 68, 0.1);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+/* Base structural utilities for the minimalist redesign */
+.min-h-screen {
+  min-height: 100vh;
 }
 
-.glassmorphism-hover {
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.glassmorphism-hover:hover {
-  background: rgba(31, 12, 12, 0.6);
-  border-color: rgba(239, 68, 68, 0.25);
-  box-shadow: 0 10px 40px -10px rgba(239, 68, 68, 0.25);
-  transform: translateY(-4px);
-}
-
-.glow-text-red {
-  text-shadow: 0 0 20px rgba(220, 38, 38, 0.4);
-}
-
-.gradient-text-red {
-  background: linear-gradient(135deg, #ffffff 30%, #ef4444 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.gradient-text-glow {
-  background: linear-gradient(135deg, #ef4444 0%, #7f1d1d 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Custom cursor tracker wrapper */
-#cursor-glow {
-  pointer-events: none;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(
-    800px circle at var(--x, 0px) var(--y, 0px),
-    rgba(220, 38, 38, 0.08),
-    transparent 80%
-  );
-  transition: opacity 0.3s ease;
-}
-
-/* Floating Elements (Anti-Gravity UI) */
+/* Retain these as empty or very subtle to prevent breaking components before they are updated */
+.glassmorphism,
+.glassmorphism-hover,
+.glow-text-red,
+.gradient-text-red,
+.gradient-text-glow,
 .anti-gravity-card {
-  transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  /* Stripped for minimalist design */
 }
 
-/* Active Timeline nodes */
+/* Timeline nodes - Minimalist */
 .timeline-dot::after {
   content: '';
   position: absolute;
@@ -160,7 +101,6 @@ body {
   transform: translate(-50%, -50%);
   width: 8px;
   height: 8px;
-  background: #ef4444;
+  background: #111827;
   border-radius: 50%;
-  box-shadow: 0 0 10px #ef4444;
 }
