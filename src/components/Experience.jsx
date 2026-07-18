@@ -29,7 +29,7 @@ const experiences = [
 
 export default function Experience() {
   return (
-    <section id="experience" className="relative py-24 px-6 md:px-12 max-w-5xl mx-auto bg-white">
+    <section id="experience" className="relative py-24 px-6 md:px-12 max-w-5xl mx-auto">
       {/* Title */}
       <div className="flex flex-col items-center mb-16 text-center">
         <span className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
@@ -46,7 +46,7 @@ export default function Experience() {
         {experiences.map((exp, idx) => (
           <div key={idx} className="relative">
             {/* Timeline Dot Marker */}
-            <div className="absolute -left-[9px] top-8 w-4 h-4 rounded-full bg-white border-2 border-gray-900 z-20" />
+            <div className="absolute -left-[9px] top-8 w-4 h-4 rounded-full bg-blue-100 border-2 border-blue-700 z-20 shadow-[0_0_0_5px_rgba(219,234,254,0.75)]" />
             
             {/* Date Tag Left Aligned (Desktop Only) */}
             <div className="hidden md:block absolute -left-36 top-7 w-28 text-right pr-6 font-display font-semibold text-sm text-gray-600 tracking-wide">
@@ -54,7 +54,7 @@ export default function Experience() {
             </div>
 
             {/* Content Card container */}
-            <div className="ml-8 md:ml-10 p-6 md:p-8 rounded-2xl border border-gray-200 bg-white hover:bg-gray-50 transition-colors duration-200">
+            <div className="liquid-glass ml-8 md:ml-10 p-6 md:p-8 rounded-2xl hover:-translate-y-1 transition-transform duration-200">
               
               {/* Date tag mobile view */}
               <div className="md:hidden flex items-center gap-1.5 font-display text-xs font-semibold text-gray-600 mb-3">

@@ -60,10 +60,10 @@ export default function Igris() {
   }, [showDetails]);
 
   return (
-    <section id="igris" className="py-24 bg-gray-50 relative z-20">
+    <section id="igris" className="py-24 relative z-20">
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-gray-200 mb-6 shadow-sm">
+          <div className="glass-chip inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6">
             <span className="text-xs font-semibold tracking-widest uppercase text-gray-600">Capstone Project</span>
           </div>
           <h2 className="text-3xl md:text-5xl font-display font-bold text-gray-900 tracking-tight mb-4">
@@ -74,7 +74,7 @@ export default function Igris() {
           </p>
         </div>
 
-        <div className="bg-white rounded-3xl p-8 md:p-12 border border-gray-200 shadow-sm relative overflow-hidden">
+        <div className="liquid-glass rounded-3xl p-8 md:p-12 relative overflow-hidden">
           <div className="relative z-10 flex flex-col md:flex-row gap-12 items-center">
             <div className="w-full md:w-1/3 flex justify-center">
               <div className="w-48 h-48 md:w-64 md:h-64 rounded-full bg-blue-50 border border-blue-100 flex items-center justify-center">
@@ -92,11 +92,11 @@ export default function Igris() {
 
               <div className="flex flex-wrap gap-2 mb-8">
                 {tech.slice(0, 6).map((t, idx) => (
-                  <span key={idx} className="px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-100 border border-gray-200 text-gray-700">
+                  <span key={idx} className="glass-chip px-3 py-1.5 rounded-lg text-xs font-medium text-gray-700">
                     {t}
                   </span>
                 ))}
-                <span className="px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-50 border border-gray-200 text-gray-500">
+                <span className="glass-chip px-3 py-1.5 rounded-lg text-xs font-medium text-gray-500">
                   +{tech.length - 6} more
                 </span>
               </div>
@@ -106,7 +106,7 @@ export default function Igris() {
                   href="https://github.com/rameshio/igris-ai-commander-capstone"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center px-6 py-3 rounded-xl font-medium text-gray-700 bg-white hover:bg-gray-50 border border-gray-200 transition-colors group"
+                  className="glass-chip inline-flex items-center px-6 py-3 rounded-xl font-medium text-gray-700 hover:bg-white/80 transition-colors group"
                 >
                   <GitHubIcon size={18} className="mr-2" />
                   GitHub Project

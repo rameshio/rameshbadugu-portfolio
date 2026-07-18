@@ -20,9 +20,9 @@ export default function Hero() {
   return (
     <section 
       id="home" 
-      className="relative min-h-screen flex items-center justify-center pt-24 pb-16 px-6 md:px-12 bg-white"
+      className="relative min-h-screen flex items-center justify-center pt-24 pb-16 px-6 md:px-12"
     >
-      <div className="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+      <div className="liquid-glass max-w-6xl w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center rounded-[2rem] p-8 md:p-12 lg:p-14">
 
         {/* Left: Headline & Bio Info */}
         <div className="lg:col-span-7 flex flex-col items-start text-left z-20">
@@ -30,7 +30,7 @@ export default function Hero() {
           {/* Badges */}
           <div className="flex flex-wrap gap-2 mb-8">
             {['React & Frontend', 'AI Agent Orchestration', 'Human-in-the-Loop'].map((badge) => (
-              <span key={badge} className="px-3 py-1 rounded-full bg-blue-50 text-xs font-medium text-blue-700 border border-blue-100">
+              <span key={badge} className="glass-chip px-3 py-1 rounded-full text-xs font-medium text-blue-700">
                 {badge}
               </span>
             ))}
@@ -61,7 +61,7 @@ export default function Hero() {
             <a
               href="/resume/Ramesh_Badugu_Resume.pdf"
               download="Ramesh_Badugu_Resume.pdf"
-              className="px-6 py-3 rounded-lg text-sm font-medium text-gray-700 bg-white border border-gray-200 hover:bg-gray-50 transition-colors flex items-center gap-2"
+              className="glass-chip px-6 py-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-white/80 transition-colors flex items-center gap-2"
             >
               Download Resume <Download size={16} />
             </a>
@@ -92,11 +92,11 @@ export default function Hero() {
 
         {/* Right: Clean Profile Image */}
         <div className="lg:col-span-5 relative flex items-center justify-center">
-          <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-2xl overflow-hidden bg-gray-100">
+          <div className="liquid-glass relative w-64 h-64 md:w-80 md:h-80 rounded-3xl overflow-hidden p-2">
             <img
               src={rameshProfile}
               alt="Ramesh Badugu Portrait"
-              className="w-full h-full object-cover object-top"
+              className="w-full h-full object-cover object-top rounded-[1.15rem]"
               fetchPriority="high"
               decoding="async"
             />

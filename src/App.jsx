@@ -8,12 +8,15 @@ import Projects from './components/Projects';
 
 import Resume from './components/Resume';
 import Contact from './components/Contact';
+import BackendStatus from './components/BackendStatus';
 
 export default function App() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <div className="relative min-h-screen text-zinc-900 flex flex-col font-sans bg-white selection:bg-gray-200">
+    <div className="relative min-h-screen text-zinc-900 flex flex-col font-sans selection:bg-blue-100">
+      <div className="liquid-orb liquid-orb-one" aria-hidden="true" />
+      <div className="liquid-orb liquid-orb-two" aria-hidden="true" />
       <a
         href="#main-content"
         className="fixed left-4 top-4 z-[200] -translate-y-24 rounded-lg bg-blue-700 px-4 py-2 text-sm font-semibold text-white shadow-lg transition-transform focus:translate-y-0"
@@ -37,7 +40,7 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-gray-100 bg-white py-12 px-6">
+      <footer className="liquid-glass-strong border-x-0 border-b-0 py-12 px-6">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="text-left">
             <a href="#home" className="font-display font-bold text-lg text-black">
@@ -52,6 +55,7 @@ export default function App() {
             <span className="font-semibold text-gray-500">
               &copy; {currentYear} Ramesh Badugu. All rights reserved.
             </span>
+            <BackendStatus />
             <span className="text-[9px] text-gray-400">
               Designed &amp; Built by Ramesh Badugu &bull; React, Vite, Tailwind v4
             </span>

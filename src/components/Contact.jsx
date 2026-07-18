@@ -1,50 +1,46 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { Mail, MapPin, Send, CheckCircle2 } from 'lucide-react';
-import emailjs from '@emailjs/browser';
 
 export default function Contact() {
-  const [formState, setFormState] = useState({ from_name: '', from_email: '', subject: '', message: '' });
+  const [formState, setFormState] = useState({ from_name: '', from_email: '', subject: '', message: '', website: '' });
   const [status, setStatus] = useState('idle'); // idle, sending, success, error
-  const formRef = useRef();
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleChange = (e) => {
     setFormState({ ...formState, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formState.from_name || !formState.from_email || !formState.subject || !formState.message) {
       setStatus('validation_error');
+      setErrorMessage('Please complete every required field.');
       return;
     }
-    
+
     setStatus('sending');
+    setErrorMessage('');
 
-    const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-    const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-
-    if (!serviceID || !templateID || !publicKey) {
-      console.error("EmailJS error: Environment variables are missing");
-      setStatus('error');
-      return;
-    }
-
-    emailjs.sendForm(serviceID, templateID, formRef.current, {
-      publicKey: publicKey
-    })
-      .then(() => {
-        setStatus('success');
-        setFormState({ from_name: '', from_email: '', subject: '', message: '' });
-      })
-      .catch((error) => {
-        console.error("EmailJS error:", error);
-        setStatus('error');
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formState),
       });
+
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(result.error || 'Message delivery failed.');
+
+      setStatus('success');
+      setFormState({ from_name: '', from_email: '', subject: '', message: '', website: '' });
+    } catch (error) {
+      setStatus('error');
+      setErrorMessage(error.message);
+    }
   };
 
   return (
-    <section id="contact" className="relative py-24 px-6 md:px-12 max-w-6xl mx-auto bg-white">
+    <section id="contact" className="relative py-24 px-6 md:px-12 max-w-6xl mx-auto">
       {/* Title */}
       <div className="flex flex-col items-center mb-16 text-center">
         <span className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
@@ -70,7 +66,7 @@ export default function Contact() {
 
           {/* Details list */}
           <div className="space-y-4">
-            <div className="flex items-start gap-4 p-4 rounded-xl border border-gray-200 bg-white shadow-sm">
+            <div className="liquid-glass flex items-start gap-4 p-4 rounded-xl">
               <div className="p-3 rounded-lg bg-gray-100 text-gray-700 mt-1">
                 <Mail size={18} />
               </div>
@@ -108,7 +104,7 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className="flex items-center gap-4 p-4 rounded-xl border border-gray-200 bg-white shadow-sm">
+            <div className="liquid-glass flex items-center gap-4 p-4 rounded-xl">
               <div className="p-3 rounded-lg bg-gray-100 text-gray-700">
                 <MapPin size={18} />
               </div>
@@ -125,7 +121,18 @@ export default function Contact() {
 
         {/* Right Column: Form */}
         <div className="lg:col-span-7 w-full">
-          <form ref={formRef} onSubmit={handleSubmit} className="p-8 md:p-10 rounded-3xl border border-gray-200 bg-white shadow-sm space-y-6">
+          <form onSubmit={handleSubmit} className="liquid-glass p-8 md:p-10 rounded-3xl space-y-6 relative">
+            <div className="absolute -left-[9999px]" aria-hidden="true">
+              <label htmlFor="website">Website</label>
+              <input
+                id="website"
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+                value={formState.website}
+                onChange={handleChange}
+              />
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {/* Name Input */}
               <div className="flex flex-col text-left">
@@ -140,7 +147,7 @@ export default function Contact() {
                   value={formState.from_name}
                   onChange={handleChange}
                   placeholder="e.g. Ramesh Badugu"
-                  className="px-4 py-3 rounded-xl bg-gray-50 text-sm text-gray-900 placeholder-gray-400 border border-gray-200 focus:border-gray-900 focus:ring-1 focus:ring-gray-900 focus:outline-none transition-colors"
+                  className="glass-input px-4 py-3 rounded-xl text-sm text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none transition-colors"
                 />
               </div>
 
@@ -157,7 +164,7 @@ export default function Contact() {
                   value={formState.from_email}
                   onChange={handleChange}
                   placeholder="e.g. yourname@domain.com"
-                  className="px-4 py-3 rounded-xl bg-gray-50 text-sm text-gray-900 placeholder-gray-400 border border-gray-200 focus:border-gray-900 focus:ring-1 focus:ring-gray-900 focus:outline-none transition-colors"
+                  className="glass-input px-4 py-3 rounded-xl text-sm text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none transition-colors"
                 />
               </div>
             </div>
@@ -175,7 +182,7 @@ export default function Contact() {
                 value={formState.subject}
                 onChange={handleChange}
                 placeholder="e.g. Project Collaboration Opportunity"
-                className="px-4 py-3 rounded-xl bg-gray-50 text-sm text-gray-900 placeholder-gray-400 border border-gray-200 focus:border-gray-900 focus:ring-1 focus:ring-gray-900 focus:outline-none transition-colors"
+                className="glass-input px-4 py-3 rounded-xl text-sm text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none transition-colors"
               />
             </div>
 
@@ -192,7 +199,7 @@ export default function Contact() {
                 value={formState.message}
                 onChange={handleChange}
                 placeholder="Briefly describe your request..."
-                className="px-4 py-3 rounded-xl bg-gray-50 text-sm text-gray-900 placeholder-gray-400 border border-gray-200 focus:border-gray-900 focus:ring-1 focus:ring-gray-900 focus:outline-none transition-colors resize-none"
+                className="glass-input px-4 py-3 rounded-xl text-sm text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none transition-colors resize-y"
               />
             </div>
 
@@ -207,12 +214,12 @@ export default function Contact() {
                 )}
                 {status === 'validation_error' && (
                   <span className="text-red-600 font-medium text-xs">
-                    Please fill out all input fields.
+                    {errorMessage}
                   </span>
                 )}
                 {status === 'error' && (
                   <span className="text-red-600 font-medium text-xs leading-normal block">
-                    Message failed to send. Please email me directly at{' '}
+                    {errorMessage || 'Message failed to send.'} Please email me directly at{' '}
                     <a href="mailto:rameshbadugums@gmail.com" className="underline hover:text-red-500 font-mono">
                       rameshbadugums@gmail.com
                     </a>.

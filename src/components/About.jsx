@@ -2,7 +2,7 @@ export default function About() {
   return (
     <section 
       id="about" 
-      className="relative py-24 px-6 md:px-12 max-w-6xl mx-auto"
+      className="liquid-glass relative my-10 mx-6 md:mx-auto py-20 px-6 md:px-12 max-w-6xl rounded-[2rem]"
     >
       {/* Title */}
       <div className="flex flex-col items-center mb-16 text-center">

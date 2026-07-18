@@ -28,7 +28,7 @@ const certifications = [
 
 export default function Resume() {
   return (
-    <section id="resume" className="relative py-24 px-6 md:px-12 max-w-6xl mx-auto bg-white">
+    <section id="resume" className="relative py-24 px-6 md:px-12 max-w-6xl mx-auto">
       {/* Title */}
       <div className="flex flex-col items-center mb-16 text-center">
         <span className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
@@ -84,7 +84,7 @@ export default function Resume() {
             {certifications.map((cert, idx) => (
               <div
                 key={idx}
-                className="bg-white p-4 rounded-xl border border-gray-200 flex items-center justify-between gap-4"
+                className="glass-chip p-4 rounded-xl flex items-center justify-between gap-4"
               >
                 <div className="flex items-center gap-3">
                   <CheckCircle size={16} className="text-gray-400" />
@@ -102,7 +102,7 @@ export default function Resume() {
       </div>
 
       {/* Downloader Section */}
-      <div className="bg-gray-50 p-8 md:p-12 rounded-3xl border border-gray-200 flex flex-col md:flex-row items-center justify-between gap-8">
+      <div className="liquid-glass p-8 md:p-12 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-8">
         <div className="text-center md:text-left max-w-xl">
           <h3 className="font-display font-bold text-xl md:text-2xl text-gray-900 mb-2">
             Frontend Developer & AI Agent Resume
@@ -117,7 +117,7 @@ export default function Resume() {
             href="/resume/Ramesh_Badugu_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 py-3 rounded-lg text-sm font-medium text-gray-700 bg-white border border-gray-200 hover:bg-gray-50 transition-colors flex items-center gap-2"
+            className="glass-chip px-6 py-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-white/80 transition-colors flex items-center gap-2"
           >
             <FileCheck size={16} />
             View Resume
@@ -126,7 +126,7 @@ export default function Resume() {
           <a
             href="/resume/Ramesh_Badugu_Resume.pdf"
             download="Ramesh_Badugu_Resume.pdf"
-            className="px-6 py-3 rounded-lg text-sm font-medium text-white bg-gray-900 hover:bg-gray-800 transition-colors flex items-center gap-2"
+            className="px-6 py-3 rounded-lg text-sm font-medium text-white bg-blue-700 hover:bg-blue-800 transition-colors flex items-center gap-2"
           >
             <Download size={16} />
             Download Resume

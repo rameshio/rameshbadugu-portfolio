@@ -10,10 +10,10 @@ const projectsData = [
     points: [
       'Designed a responsive, minimalist interface with clear content hierarchy and accessible interactions.',
       'Connected GitHub, Vercel, and custom domain workflow.',
-      'Added resume download, contact information, and EmailJS contact form support.',
+      'Added a validated backend contact API, health checks, rate limiting, and server-side EmailJS delivery.',
       'Used AI coding tools to improve layout, debug UI issues, and keep content aligned with my resume.'
     ],
-    tech: ['React', 'Vite', 'Tailwind CSS', 'Vercel', 'EmailJS', 'AI Coding Tools']
+    tech: ['React', 'Vite', 'Tailwind CSS', 'Node.js', 'Serverless API', 'EmailJS']
   },
   {
     id: 3,
@@ -71,10 +71,10 @@ export default function Projects() {
   }, [selectedProject]);
 
   return (
-    <section id="projects" className="py-24 bg-white relative z-20">
+    <section id="projects" className="py-24 relative z-20">
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gray-100 border border-gray-200 mb-6">
+          <div className="glass-chip inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6">
             <span className="text-xs font-semibold tracking-widest uppercase text-gray-600">Current Focus</span>
           </div>
           <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 tracking-tight mb-4">
@@ -89,7 +89,7 @@ export default function Projects() {
           {projectsData.map((project) => (
             <article
               key={project.id}
-              className="bg-white rounded-2xl p-6 border border-gray-200 hover:border-blue-200 hover:shadow-md transition-all duration-200 flex flex-col h-full group"
+              className="liquid-glass rounded-2xl p-6 hover:-translate-y-1 transition-transform duration-200 flex flex-col h-full group"
             >
               <div className="w-12 h-12 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center mb-6">
                 {project.icon}

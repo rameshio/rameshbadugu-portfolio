@@ -29,7 +29,7 @@ const skillCategories = [
 
 export default function Skills() {
   return (
-    <section id="skills" className="relative py-24 px-6 md:px-12 max-w-6xl mx-auto bg-white">
+    <section id="skills" className="relative py-24 px-6 md:px-12 max-w-6xl mx-auto">
       {/* Title */}
       <div className="flex flex-col items-center mb-16 text-center">
         <span className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
@@ -46,7 +46,7 @@ export default function Skills() {
         {skillCategories.map((category, idx) => (
           <div
             key={idx}
-            className="p-8 rounded-2xl border border-gray-200 bg-white hover:bg-gray-50 transition-colors duration-200 flex flex-col justify-between"
+            className="liquid-glass p-8 rounded-2xl hover:-translate-y-1 transition-transform duration-200 flex flex-col justify-between"
           >
             <div>
               {/* Category Header */}
@@ -69,7 +69,7 @@ export default function Skills() {
                 {category.skills.map((skill, sIdx) => (
                   <span
                     key={sIdx}
-                    className="px-3.5 py-1.5 rounded-lg text-xs font-medium text-gray-700 bg-white border border-gray-200 shadow-sm"
+                    className="glass-chip px-3.5 py-1.5 rounded-lg text-xs font-medium text-gray-700"
                   >
                     {skill}
                   </span>

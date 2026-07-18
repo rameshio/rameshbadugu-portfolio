@@ -51,7 +51,7 @@ export default function Navbar() {
   }, [isOpen]);
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/90 backdrop-blur-md border-b border-gray-200 py-3 shadow-sm' : 'bg-transparent py-5'}`}>
+    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled ? 'liquid-glass-strong border-x-0 border-t-0 py-3' : 'bg-transparent py-5'}`}>
       <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
 
         {/* Brand Logo */}
@@ -119,7 +119,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2, ease: 'easeInOut' }}
-            className="lg:hidden bg-white border-b border-gray-200 overflow-hidden"
+            className="lg:hidden liquid-glass-strong border-x-0 border-t-0 overflow-hidden"
           >
             <div className="flex flex-col gap-1 p-4 max-w-6xl mx-auto">
               {navLinks.map((link) => {
