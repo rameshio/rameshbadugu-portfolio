@@ -9,12 +9,22 @@ import Projects from './components/Projects';
 import Resume from './components/Resume';
 import Contact from './components/Contact';
 import BackendStatus from './components/BackendStatus';
+import LightPillar from './components/LightPillar';
 
 export default function App() {
   const currentYear = new Date().getFullYear();
 
   return (
     <div className="relative min-h-screen text-zinc-900 flex flex-col font-sans selection:bg-blue-100">
+      <div className="fixed inset-0 z-0 w-full h-full pointer-events-none opacity-40">
+        <LightPillar 
+          lightMode={true} 
+          topColor="#3b82f6" 
+          bottomColor="#a855f7" 
+          interactive={true} 
+          quality="high"
+        />
+      </div>
       <div className="liquid-orb liquid-orb-one" aria-hidden="true" />
       <div className="liquid-orb liquid-orb-two" aria-hidden="true" />
       <a
