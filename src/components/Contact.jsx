@@ -44,9 +44,9 @@ export default function Contact() {
     <section id="contact" className="relative py-24 px-6 md:px-12 max-w-6xl mx-auto">
       {/* Title */}
       <div className="flex flex-col items-center mb-16 text-center">
-        <span className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
-          Get In Touch
-        </span>
+        <div className="glass-chip inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6">
+          <span className="text-xs font-semibold tracking-widest uppercase text-gray-600">Get In Touch</span>
+        </div>
         <SplitText text="Contact Me" className="font-display font-bold text-3xl md:text-4xl text-gray-900 tracking-tight" tag="h2" delay={30} />
         <div className="w-12 h-1 bg-gray-900 rounded-full mt-6" />
       </div>
