@@ -1,4 +1,6 @@
+import SplitText from './SplitText';
 import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { Bot, ChevronRight, X, Webhook, Zap, ShieldCheck } from 'lucide-react';
 
 const GitHubIcon = ({ size = 18, className = "" }) => (
@@ -62,13 +64,11 @@ export default function Igris() {
   return (
     <section id="igris" className="py-24 relative z-20">
       <div className="max-w-6xl mx-auto px-6">
-        <div className="text-center mb-16">
+        <div className="flex flex-col items-center mb-16 text-center">
           <div className="glass-chip inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6">
             <span className="text-xs font-semibold tracking-widest uppercase text-gray-600">Capstone Project</span>
           </div>
-          <h2 className="text-3xl md:text-5xl font-display font-bold text-gray-900 tracking-tight mb-4">
-            Igris AI Commander
-          </h2>
+          <SplitText text="Igris AI Commander" className="text-3xl md:text-5xl font-display font-bold text-gray-900 tracking-tight mb-4" tag="h2" delay={30} />
           <p className="text-gray-500 max-w-2xl mx-auto font-sans">
             Kaggle / Google AI Agents Intensive — Vibe Coding Capstone, Concierge Agents track
           </p>
@@ -126,7 +126,7 @@ export default function Igris() {
         </div>
       </div>
 
-      {showDetails && (
+      {showDetails && createPortal(
         <div
           className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-6 bg-gray-900/40 backdrop-blur-sm"
           onClick={() => setShowDetails(false)}
@@ -205,7 +205,8 @@ export default function Igris() {
               </button>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </section>
   );

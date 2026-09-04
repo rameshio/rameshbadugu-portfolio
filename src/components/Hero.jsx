@@ -1,5 +1,6 @@
 import { ArrowRight, Download, Mail } from 'lucide-react';
 import rameshProfile from '../assets/ramesh-profile.jpeg';
+import SplitText from './SplitText';
 
 const GitHubIcon = ({ size = 18 }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -40,10 +41,13 @@ export default function Hero() {
             Hi, I’m Ramesh Badugu
           </p>
           
-          <h1 className="font-display font-bold text-4xl sm:text-5xl md:text-6xl tracking-tight leading-[1.1] mb-6 text-gray-900">
-            Frontend Developer &amp; <br />
-            AI Agent Builder
-          </h1>
+          <SplitText
+            text="Frontend Developer & AI Agent Builder"
+            className="font-display font-bold text-4xl sm:text-5xl md:text-6xl tracking-tight leading-[1.1] mb-6 text-gray-900"
+            tag="h1"
+            textAlign="left"
+            delay={50}
+          />
 
           <p className="text-gray-600 text-base md:text-lg max-w-xl mb-10 leading-relaxed font-sans">
             I build accessible React interfaces and practical AI workflows. My experience spans production web development at Vanguard and Infosys, while my current work explores safe agent orchestration through Igris AI Commander.

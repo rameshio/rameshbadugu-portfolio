@@ -1,3 +1,4 @@
+import SplitText from './SplitText';
 export default function About() {
   return (
     <section 
@@ -9,9 +10,7 @@ export default function About() {
         <span className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
           My Background
         </span>
-        <h2 className="font-display font-bold text-3xl md:text-4xl text-gray-900 tracking-tight">
-          About Me
-        </h2>
+        <SplitText text="About Me" className="font-display font-bold text-3xl md:text-4xl text-gray-900 tracking-tight" tag="h2" delay={30} />
         <div className="w-12 h-1 bg-gray-900 rounded-full mt-6" />
       </div>
 

@@ -1,3 +1,4 @@
+import SplitText from './SplitText';
 import { useState } from 'react';
 import { Mail, MapPin, Send, CheckCircle2 } from 'lucide-react';
 
@@ -46,9 +47,7 @@ export default function Contact() {
         <span className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
           Get In Touch
         </span>
-        <h2 className="font-display font-bold text-3xl md:text-4xl text-gray-900 tracking-tight">
-          Contact Me
-        </h2>
+        <SplitText text="Contact Me" className="font-display font-bold text-3xl md:text-4xl text-gray-900 tracking-tight" tag="h2" delay={30} />
         <div className="w-12 h-1 bg-gray-900 rounded-full mt-6" />
       </div>
 

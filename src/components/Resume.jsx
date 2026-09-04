@@ -1,3 +1,4 @@
+import SplitText from './SplitText';
 import { GraduationCap, Download, FileCheck, CheckCircle, Award } from 'lucide-react';
 
 const education = [
@@ -34,9 +35,7 @@ export default function Resume() {
         <span className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
           My Credentials
         </span>
-        <h2 className="font-display font-bold text-3xl md:text-4xl text-gray-900 tracking-tight">
-          Frontend Developer & AI Agent Resume
-        </h2>
+        <SplitText text="Frontend Developer & AI Agent Resume" className="font-display font-bold text-3xl md:text-4xl text-gray-900 tracking-tight" tag="h2" delay={30} />
         <div className="w-12 h-1 bg-gray-900 rounded-full mt-6" />
       </div>
 

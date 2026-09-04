@@ -1,3 +1,4 @@
+import SplitText from './SplitText';
 import { Code2, Cpu, Eye, Terminal } from 'lucide-react';
 
 const skillCategories = [
@@ -35,9 +36,7 @@ export default function Skills() {
         <span className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
           Core Competencies
         </span>
-        <h2 className="font-display font-bold text-3xl md:text-4xl text-gray-900 tracking-tight">
-          My Skills
-        </h2>
+        <SplitText text="My Skills" className="font-display font-bold text-3xl md:text-4xl text-gray-900 tracking-tight" tag="h2" delay={30} />
         <div className="w-12 h-1 bg-gray-900 rounded-full mt-6" />
       </div>
 
