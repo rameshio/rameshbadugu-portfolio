@@ -3,6 +3,7 @@ import { readFile, stat } from 'node:fs/promises';
 import { extname, join, normalize } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { deliveryConfigured, processContact } from './contact-service.js';
+import { processChat, resolveAssistantMode } from './chat-service.js';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const dist = join(root, 'dist');
@@ -72,6 +73,22 @@ async function serveStatic(pathname, response) {
   }
 }
 
+async function handleJsonPostRoute(request, response, processor) {
+  try {
+    const payload = request.method === 'POST' ? await readJson(request) : {};
+    const result = await processor({
+      method: request.method,
+      payload,
+      ip: request.socket.remoteAddress,
+      env: process.env,
+    });
+    return sendJson(response, result.status, result.body, result.headers);
+  } catch (error) {
+    const status = error.message === 'Payload too large.' ? 413 : 400;
+    return sendJson(response, status, { ok: false, error: error.message });
+  }
+}
+
 export function startServer() {
   const server = createServer(async (request, response) => {
     const url = new URL(request.url, `http://${request.headers.host || 'localhost'}`);
@@ -81,24 +98,17 @@ export function startServer() {
         ok: true,
         service: 'rameshbadugu-portfolio-api',
         contactDelivery: deliveryConfigured(process.env) || process.env.CONTACT_DELIVERY_MODE === 'console',
+        assistantMode: resolveAssistantMode(process.env),
         timestamp: new Date().toISOString(),
       });
     }
 
     if (url.pathname === '/api/contact') {
-      try {
-        const payload = request.method === 'POST' ? await readJson(request) : {};
-        const result = await processContact({
-          method: request.method,
-          payload,
-          ip: request.socket.remoteAddress,
-          env: process.env,
-        });
-        return sendJson(response, result.status, result.body, result.headers);
-      } catch (error) {
-        const status = error.message === 'Payload too large.' ? 413 : 400;
-        return sendJson(response, status, { ok: false, error: error.message });
-      }
+      return handleJsonPostRoute(request, response, processContact);
+    }
+
+    if (url.pathname === '/api/chat') {
+      return handleJsonPostRoute(request, response, processChat);
     }
 
     return serveStatic(url.pathname, response);

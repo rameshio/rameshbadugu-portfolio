@@ -12,6 +12,27 @@ dist
 dist-ssr
 *.local
 
+# Environment & secrets
+.env
+.env.*
+!.env.example
+
+# Python / RAG backend
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+rag_backend/chroma_db/
+
+# Cloudflare Workers RAG
+cloudflare_rag/node_modules/
+cloudflare_rag/.wrangler/
+cloudflare_rag/.dev.vars
+cloudflare_rag/.dev.vars.*
+cloudflare_rag/worker-configuration.d.ts
+cloudflare_rag/data/chunks.generated.json
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

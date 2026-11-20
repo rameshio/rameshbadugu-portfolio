@@ -1,0 +1,50 @@
+[
+  {
+    "id": "portfolio-profile",
+    "source": "Portfolio_Profile.md",
+    "title": "Ramesh Badugu — Profile & Summary",
+    "section": "profile",
+    "page": 1,
+    "content": "Ramesh Badugu is a Frontend Developer and AI Agent Builder based in the United States (Remote Available). He builds accessible React interfaces and practical AI workflows. His background spans production web development at Vanguard and Infosys, alongside M.S. graduate study in Artificial Intelligence and hands-on agent orchestration, human-in-the-loop workflows, and LangChain/Cloudflare RAG engineering. Contact: Email rameshbadugums@gmail.com, Phone +1 908 309 5257, LinkedIn https://linkedin.com/in/rameshbadugu, GitHub https://github.com/rameshio, Website https://rameshbaduguai.com."
+  },
+  {
+    "id": "portfolio-experience-vanguard",
+    "source": "Portfolio_Experience.md",
+    "title": "Vanguard — Junior Frontend Developer",
+    "section": "experience",
+    "page": 1,
+    "content": "Junior Frontend Developer at Vanguard (Malvern, PA) from Aug 2024 to Sep 2025. Contributed to frontend development on a financial web application. Built and updated user interface components using React.js, JavaScript, HTML, and CSS. Collaborated with developers in an Agile team on feature work and defect fixes, and managed code using Git following team development practices."
+  },
+  {
+    "id": "portfolio-experience-infosys",
+    "source": "Portfolio_Experience.md",
+    "title": "Infosys — Software Development Intern",
+    "section": "experience",
+    "page": 2,
+    "content": "Software Development Intern at Infosys (Bengaluru, India) from Mar 2022 to Dec 2022. Focused on frontend web development for a legacy application modernization effort. Built and modified UI components using React.js, HTML, CSS, and JavaScript, identified and fixed UI and functionality defects during feature testing, and used Git for version control within an Agile team."
+  },
+  {
+    "id": "portfolio-igris",
+    "source": "Portfolio_Igris_Capstone.md",
+    "title": "Igris AI Commander — Capstone Project",
+    "section": "projects",
+    "page": 1,
+    "content": "Igris AI Commander (Kaggle / Google AI Agents Intensive — Vibe Coding Capstone, Concierge Agents track). A Telegram-based personal AI agent orchestrator that manages Gmail summaries, job scouting, and approvals from a single control center. Engineered with a human-in-the-loop approval layer so sensitive or destructive actions like sending emails, applying to jobs, deleting, or archiving require explicit confirmation before running. Built in Node.js and TypeScript using Telegram Bot API, Gmail API, OAuth 2.0, Playwright browser automation, and a local Ollama gemma3:4b model running under PM2, structured into skills, specs, policies, tests, and eval folders. Repository: https://github.com/rameshio/igris-ai-commander-capstone."
+  },
+  {
+    "id": "portfolio-projects-and-skills",
+    "source": "Portfolio_Skills_Projects.md",
+    "title": "Projects & Technical Skills",
+    "section": "skills",
+    "page": 1,
+    "content": "Technical Skills — Frontend: React.js, JavaScript, HTML, CSS, Tailwind CSS, Vite. AI & Agents: AI agents, agent orchestration, human-in-the-loop workflows, prompt engineering, tool use, task decomposition, local LLMs, Ollama, gemma3, LangChain RAG. Backend & Automation: Node.js, TypeScript, FastAPI, Cloudflare Workers, Telegram Bot API, Gmail API, OAuth 2.0, Playwright, browser automation. Tools & Practices: Git, GitHub, Google Antigravity, PM2, VS Code, Agile, Scrum. Other Portfolio Projects: Frontend Portfolio Redesign (React, Vite, Tailwind CSS, Node.js, Serverless API, EmailJS) and AI Tools & Automation Learning (Claude, ChatGPT, Gemini, local LLMs, prompt engineering, AI agents)."
+  },
+  {
+    "id": "portfolio-education-certs",
+    "source": "Portfolio_Education.md",
+    "title": "Education & Certifications",
+    "section": "education",
+    "page": 1,
+    "content": "Education: M.S. in Artificial Intelligence at Southwest Baptist University, Bolivar, MO (Jan 2026 – Present), studying machine learning, cognitive systems, neural network designs, and AI agentic automation structures. M.S. in Information Technology Management at Concordia University, St. Paul, MN (Jan 2023 – May 2024), focused on IT governance, strategic management, enterprise technology alignment, and secure information systems. Certifications: Anthropic — Claude 101 (2026) and AI Fluency: Framework & Foundations (2026)."
+  }
+]

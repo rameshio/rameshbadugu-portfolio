@@ -9,6 +9,7 @@ import Projects from './components/Projects';
 import Resume from './components/Resume';
 import Contact from './components/Contact';
 import BackendStatus from './components/BackendStatus';
+import PortfolioAssistant from './components/PortfolioAssistant';
 
 export default function App() {
   const currentYear = new Date().getFullYear();
@@ -62,6 +63,8 @@ export default function App() {
           </div>
         </div>
       </footer>
+      {/* Floating AI Assistant */}
+      <PortfolioAssistant />
     </div>
   );
 }
