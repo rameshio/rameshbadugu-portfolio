@@ -1,21 +1,25 @@
+import { evaluateRateLimit } from '../api/_lib/rateLimit.js';
+
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const LIMITS = {
-  from_name: 80,
-  from_email: 160,
-  subject: 140,
-  message: 4000,
+  from_name: 100,
+  from_email: 200,
+  subject: 200,
+  message: 5000,
 };
 
-const buckets = new Map();
-
 export function validateContact(payload = {}) {
+  if (!payload || typeof payload !== 'object' || Array.isArray(payload)) {
+    return { ok: false, status: 400, error: 'Invalid request payload.' };
+  }
+
   const clean = {
-    from_name: String(payload.from_name ?? '').trim(),
-    from_email: String(payload.from_email ?? '').trim().toLowerCase(),
-    subject: String(payload.subject ?? '').trim(),
-    message: String(payload.message ?? '').trim(),
-    website: String(payload.website ?? '').trim(),
+    from_name: typeof payload.from_name === 'string' ? payload.from_name.trim() : '',
+    from_email: typeof payload.from_email === 'string' ? payload.from_email.trim().toLowerCase() : '',
+    subject: typeof payload.subject === 'string' ? payload.subject.trim() : '',
+    message: typeof payload.message === 'string' ? payload.message.trim() : '',
+    website: typeof payload.website === 'string' ? payload.website.trim() : '',
   };
 
   if (clean.website) {
@@ -38,24 +42,9 @@ export function validateContact(payload = {}) {
 
   return { ok: true, data: clean };
 }
-export function checkRateLimit(ip, now = Date.now()) {
-  const key = ip || 'unknown';
-  const windowMs = 15 * 60 * 1000;
-  const maxRequests = 5;
-  const current = buckets.get(key);
 
-  if (!current || now - current.startedAt >= windowMs) {
-    buckets.set(key, { count: 1, startedAt: now });
-    return { allowed: true, remaining: maxRequests - 1 };
-  }
-
-  if (current.count >= maxRequests) {
-    const retryAfter = Math.ceil((windowMs - (now - current.startedAt)) / 1000);
-    return { allowed: false, remaining: 0, retryAfter };
-  }
-
-  current.count += 1;
-  return { allowed: true, remaining: maxRequests - current.count };
+export async function checkRateLimit(ip) {
+  return evaluateRateLimit(ip, 'contact');
 }
 
 export function deliveryConfigured(env = process.env) {
@@ -107,19 +96,21 @@ export async function deliverContact(data, env = process.env, fetchImpl = fetch)
   }
 }
 
-export async function processContact({ method, payload, ip, env, fetchImpl }) {
+export async function processContact({ method, payload, ip, env, fetchImpl, skipRateLimit = false }) {
   if (method === 'OPTIONS') return { status: 204, body: null };
   if (method !== 'POST') {
     return { status: 405, body: { ok: false, error: 'Method not allowed.' } };
   }
 
-  const rateLimit = checkRateLimit(ip);
-  if (!rateLimit.allowed) {
-    return {
-      status: 429,
-      headers: { 'Retry-After': String(rateLimit.retryAfter) },
-      body: { ok: false, error: 'Too many messages. Please try again later.' },
-    };
+  if (!skipRateLimit) {
+    const rateLimit = await checkRateLimit(ip);
+    if (!rateLimit.allowed) {
+      return {
+        status: 429,
+        headers: { 'Retry-After': String(rateLimit.retryAfter) },
+        body: { ok: false, error: 'Too many requests. Please try again shortly.' },
+      };
+    }
   }
 
   const validation = validateContact(payload);

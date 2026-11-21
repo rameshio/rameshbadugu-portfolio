@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import contactHandler from '../api/contact.js';
 import { deliverContact, processContact, validateContact } from './contact-service.js';
 
 const validPayload = {
@@ -40,4 +41,83 @@ test('deliverContact sends the expected EmailJS request', async () => {
 test('processContact rejects unsupported methods', async () => {
   const result = await processContact({ method: 'GET', payload: validPayload, ip: 'method-test' });
   assert.equal(result.status, 405);
+});
+
+test('validateContact enforces field length caps and /api/contact enforces 413 & 3 req/10m rate limit', async () => {
+  assert.equal(validateContact({ ...validPayload, from_name: 'a'.repeat(101) }).ok, false);
+  assert.equal(validateContact({ ...validPayload, from_email: `${'a'.repeat(190)}@example.com` }).ok, false);
+  assert.equal(validateContact({ ...validPayload, subject: 'a'.repeat(201) }).ok, false);
+  assert.equal(validateContact({ ...validPayload, message: 'a'.repeat(5001) }).ok, false);
+
+  const prevMode = process.env.CONTACT_DELIVERY_MODE;
+  process.env.CONTACT_DELIVERY_MODE = 'console';
+  const makeRes = () => {
+    const headers = {};
+    let statusCode = 200;
+    let body = null;
+    return {
+      headers,
+      get statusCode() {
+        return statusCode;
+      },
+      get body() {
+        return body;
+      },
+      setHeader(name, value) {
+        headers[name] = value;
+      },
+      status(code) {
+        statusCode = code;
+        return this;
+      },
+      json(data) {
+        body = data;
+        return this;
+      },
+      end() {
+        return this;
+      },
+    };
+  };
+
+  try {
+    const bigRes = makeRes();
+    await contactHandler(
+      {
+        method: 'POST',
+        headers: { 'x-real-ip': '198.51.100.71' },
+        body: { ...validPayload, message: 'x'.repeat(1024 * 1024) },
+      },
+      bigRes,
+    );
+    assert.equal(bigRes.statusCode, 413);
+
+    for (let i = 0; i < 3; i += 1) {
+      const res = makeRes();
+      await contactHandler(
+        {
+          method: 'POST',
+          headers: { 'x-real-ip': '198.51.100.72' },
+          body: validPayload,
+        },
+        res,
+      );
+      assert.equal(res.statusCode, 200);
+    }
+
+    const limited = makeRes();
+    await contactHandler(
+      {
+        method: 'POST',
+        headers: { 'x-real-ip': '198.51.100.72' },
+        body: validPayload,
+      },
+      limited,
+    );
+    assert.equal(limited.statusCode, 429);
+    assert.ok(Number(limited.headers['Retry-After']) >= 1);
+  } finally {
+    if (prevMode === undefined) delete process.env.CONTACT_DELIVERY_MODE;
+    else process.env.CONTACT_DELIVERY_MODE = prevMode;
+  }
 });

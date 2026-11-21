@@ -141,7 +141,7 @@ function makeEnv(overrides: Partial<WorkerRuntimeEnv> = {}): WorkerRuntimeEnv {
     RATE_LIMIT_MAX_REQUESTS: "20",
     RATE_LIMIT_WINDOW_SECONDS: "900",
     REQUIRE_AUTH: "true",
-    ALLOWED_ORIGINS: "https://rameshbaduguai.com,http://localhost:5173",
+    ALLOWED_ORIGINS: "",
     OPENROUTER_API_KEY: "test-openrouter-secret",
     RAG_API_KEY: "test-rag-secret",
     AI: createFakeAi(),
@@ -310,12 +310,26 @@ describe("Cloudflare Portfolio RAG Worker", () => {
     const unauth = await worker.fetch(
       new Request("https://worker.test/chat", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Origin: "https://rameshbaduguai.com",
+        },
         body: JSON.stringify({ message: "Hello" }),
       }),
       env,
     );
     expect(unauth.status).toBe(401);
+    expect(unauth.headers.get("access-control-allow-origin")).toBeNull();
+
+    const preflight = await worker.fetch(
+      new Request("https://worker.test/chat", {
+        method: "OPTIONS",
+        headers: { Origin: "https://evil.example.com" },
+      }),
+      env,
+    );
+    expect(preflight.status).toBe(204);
+    expect(preflight.headers.get("access-control-allow-origin")).toBeNull();
 
     const failClosedEnv = makeEnv({ RAG_API_KEY: "", REQUIRE_AUTH: "true" });
     const failClosed = await worker.fetch(

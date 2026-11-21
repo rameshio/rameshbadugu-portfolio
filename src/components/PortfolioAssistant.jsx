@@ -10,6 +10,7 @@ import {
   Sparkles,
   X,
 } from 'lucide-react';
+import { isSafeHref } from '../utils/safeHref';
 
 const WELCOME_MESSAGE = {
   id: 'welcome',
@@ -149,7 +150,7 @@ export default function PortfolioAssistant() {
           id: createMessageId('assistant'),
           role: 'assistant',
           content: result.reply,
-          actions: Array.isArray(result.actions) ? result.actions : [],
+          actions: Array.isArray(result.actions) ? result.actions.filter((a) => isSafeHref(a?.href)) : [],
           sources: Array.isArray(result.sources) ? result.sources : [],
         },
       ]);
@@ -192,10 +193,10 @@ export default function PortfolioAssistant() {
             animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
             exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 16, scale: 0.96 }}
             transition={{ duration: shouldReduceMotion ? 0.1 : 0.2, ease: 'easeOut' }}
-            className="fixed bottom-20 right-4 sm:right-6 z-[85] w-[calc(100vw-2rem)] sm:w-[400px] max-h-[min(560px,calc(100dvh-6.5rem))] liquid-glass-strong rounded-3xl shadow-2xl flex flex-col overflow-hidden"
+            className="fixed bottom-20 right-4 sm:right-6 z-[85] w-[calc(100vw-2rem)] sm:w-[400px] max-h-[min(560px,calc(100dvh-6.5rem))] bg-white border border-slate-200 rounded-3xl shadow-2xl flex flex-col overflow-hidden"
           >
             {/* Header */}
-            <div className="px-5 py-4 border-b border-gray-200/70 flex items-center justify-between gap-3 bg-white/40">
+            <div className="px-5 py-4 border-b border-slate-200 flex items-center justify-between gap-3 bg-white">
               <div className="flex items-center gap-3 min-w-0">
                 <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200/70 text-blue-700 flex items-center justify-center shrink-0">
                   <Bot size={20} />
@@ -217,7 +218,7 @@ export default function PortfolioAssistant() {
                 <button
                   type="button"
                   onClick={handleReset}
-                  className="min-w-[38px] min-h-[38px] flex items-center justify-center rounded-xl text-gray-500 hover:text-gray-900 hover:bg-white/70 transition-colors"
+                  className="min-w-[38px] min-h-[38px] flex items-center justify-center rounded-xl text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-colors"
                   aria-label="Reset conversation"
                   title="Reset conversation"
                 >
@@ -226,7 +227,7 @@ export default function PortfolioAssistant() {
                 <button
                   type="button"
                   onClick={() => setIsOpen(false)}
-                  className="min-w-[40px] min-h-[40px] flex items-center justify-center rounded-xl text-gray-500 hover:text-gray-900 hover:bg-white/70 transition-colors"
+                  className="min-w-[40px] min-h-[40px] flex items-center justify-center rounded-xl text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-colors"
                   aria-label="Close assistant"
                 >
                   <X size={18} />
@@ -235,7 +236,7 @@ export default function PortfolioAssistant() {
             </div>
 
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-3">
+            <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-white">
               {messages.map((msg) => {
                 const isUser = msg.role === 'user';
                 return (
@@ -247,7 +248,7 @@ export default function PortfolioAssistant() {
                       className={`max-w-[88%] rounded-2xl px-4 py-3 text-sm leading-relaxed whitespace-pre-line ${
                         isUser
                           ? 'bg-blue-700 text-white rounded-br-sm shadow-sm'
-                          : 'bg-white/85 border border-white/90 text-gray-800 rounded-bl-sm shadow-sm'
+                          : 'bg-slate-50 border border-slate-200 text-slate-900 rounded-bl-sm shadow-xs'
                       }`}
                     >
                       {msg.content}
@@ -263,7 +264,7 @@ export default function PortfolioAssistant() {
                             target={action.external ? '_blank' : undefined}
                             rel={action.external ? 'noopener noreferrer' : undefined}
                             onClick={() => handleActionClick(action)}
-                            className="glass-chip inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-blue-700 hover:bg-white transition-colors"
+                            className="bg-white border border-slate-200 shadow-xs inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-blue-700 hover:bg-blue-50 hover:border-blue-200 transition-colors"
                           >
                             {action.download && <Download size={12} />}
                             <span>{action.label}</span>
@@ -278,7 +279,7 @@ export default function PortfolioAssistant() {
                         {msg.sources.map((src) => (
                           <span
                             key={`${msg.id}-${src}`}
-                            className="text-[10px] font-mono text-gray-500 bg-gray-100/80 px-2 py-0.5 rounded"
+                            className="text-[10px] font-mono text-slate-600 bg-slate-100 border border-slate-200/80 px-2 py-0.5 rounded"
                           >
                             {src}
                           </span>
@@ -292,7 +293,7 @@ export default function PortfolioAssistant() {
               {/* Quick Prompts on fresh conversation */}
               {messages.length === 1 && !isSending && (
                 <div className="pt-1">
-                  <p className="text-[11px] font-semibold uppercase tracking-wider text-gray-500 mb-2">
+                  <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-600 mb-2">
                     Suggested questions
                   </p>
                   <div className="flex flex-wrap gap-1.5">
@@ -301,7 +302,7 @@ export default function PortfolioAssistant() {
                         key={prompt}
                         type="button"
                         onClick={() => sendMessage(prompt)}
-                        className="glass-chip px-3 py-1.5 rounded-xl text-xs font-medium text-gray-700 hover:text-blue-700 hover:bg-white transition-colors text-left"
+                        className="bg-white border border-slate-200 shadow-xs px-3 py-1.5 rounded-xl text-xs font-medium text-slate-700 hover:text-blue-700 hover:bg-blue-50 hover:border-blue-200 transition-colors text-left"
                       >
                         {prompt}
                       </button>
@@ -312,7 +313,7 @@ export default function PortfolioAssistant() {
 
               {isSending && (
                 <div className="flex items-start" aria-live="polite">
-                  <div className="bg-white/85 border border-white/90 rounded-2xl rounded-bl-sm px-4 py-3 shadow-sm flex items-center gap-1.5">
+                  <div className="bg-slate-50 border border-slate-200 rounded-2xl rounded-bl-sm px-4 py-3 shadow-xs flex items-center gap-1.5">
                     <span className="sr-only">Assistant is typing</span>
                     <span className={`w-1.5 h-1.5 rounded-full bg-blue-600 ${shouldReduceMotion ? '' : 'animate-pulse'}`} />
                     <span className={`w-1.5 h-1.5 rounded-full bg-blue-500 ${shouldReduceMotion ? '' : 'animate-pulse'}`} />
@@ -336,7 +337,7 @@ export default function PortfolioAssistant() {
             {/* Input Form */}
             <form
               onSubmit={handleSubmit}
-              className="p-3 border-t border-gray-200/70 bg-white/40 flex items-center gap-2"
+              className="p-3 border-t border-slate-200 bg-white flex items-center gap-2"
             >
               <input
                 ref={inputRef}
@@ -346,7 +347,7 @@ export default function PortfolioAssistant() {
                 maxLength={1500}
                 placeholder="Ask about skills, Igris, experience..."
                 aria-label="Ask Ramesh's portfolio assistant"
-                className="glass-input flex-1 min-h-[44px] px-3.5 py-2 rounded-xl text-base sm:text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none"
+                className="flex-1 min-h-[44px] px-3.5 py-2 rounded-xl bg-slate-50 border border-slate-300 text-base sm:text-sm text-slate-900 placeholder:text-slate-400 focus:bg-white focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 focus:outline-none transition-colors"
               />
               <button
                 type="submit"

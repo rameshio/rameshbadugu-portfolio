@@ -2,6 +2,8 @@ import { createServer } from 'node:http';
 import { readFile, stat } from 'node:fs/promises';
 import { extname, join, normalize } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { getClientIp } from '../api/_lib/rateLimit.js';
+import { MAX_BODY_BYTES, tooLarge } from '../api/_lib/validateChat.js';
 import { deliveryConfigured, processContact } from './contact-service.js';
 import { processChat, resolveAssistantMode } from './chat-service.js';
 
@@ -39,11 +41,16 @@ function sendJson(response, status, body, headers = {}) {
 }
 
 async function readJson(request) {
-  let raw = '';
+  if (tooLarge(request)) throw new Error('Request too large.');
+  let byteLen = 0;
+  const chunks = [];
   for await (const chunk of request) {
-    raw += chunk;
-    if (raw.length > 16_384) throw new Error('Payload too large.');
+    const buf = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
+    byteLen += buf.byteLength;
+    if (byteLen > MAX_BODY_BYTES) throw new Error('Request too large.');
+    chunks.push(buf);
   }
+  const raw = Buffer.concat(chunks).toString('utf8');
   return raw ? JSON.parse(raw) : {};
 }
 
@@ -79,12 +86,12 @@ async function handleJsonPostRoute(request, response, processor) {
     const result = await processor({
       method: request.method,
       payload,
-      ip: request.socket.remoteAddress,
+      ip: getClientIp(request),
       env: process.env,
     });
     return sendJson(response, result.status, result.body, result.headers);
   } catch (error) {
-    const status = error.message === 'Payload too large.' ? 413 : 400;
+    const status = error.message === 'Request too large.' ? 413 : 400;
     return sendJson(response, status, { ok: false, error: error.message });
   }
 }

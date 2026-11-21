@@ -1,10 +1,7 @@
+import { evaluateRateLimit } from '../api/_lib/rateLimit.js';
+import { sanitizeActions } from '../api/_lib/safeActions.js';
+import { MAX_MESSAGE, sanitizeHistory } from '../api/_lib/validateChat.js';
 import { PORTFOLIO_SYSTEM_PROMPT, answerFromPortfolioKnowledge } from './portfolio-knowledge.js';
-
-const MAX_MESSAGE_LENGTH = 1500;
-const MAX_HISTORY_ITEMS = 8;
-const UPSTREAM_TIMEOUT_MS = 9000;
-
-const chatBuckets = new Map();
 
 export function resolveAssistantMode(env = process.env) {
   if (env.RAG_API_URL) return 'rag';
@@ -18,47 +15,29 @@ export function validateChatPayload(payload = {}) {
     return { ok: false, status: 400, error: 'Invalid request payload.' };
   }
 
-  const message = String(payload.message ?? '').trim();
+  if (typeof payload.message !== 'string') {
+    return { ok: false, status: 400, error: 'Please enter a question.' };
+  }
+
+  const message = payload.message.trim();
   if (!message) {
     return { ok: false, status: 400, error: 'Please enter a question.' };
   }
 
-  if (message.length > MAX_MESSAGE_LENGTH) {
-    return { ok: false, status: 400, error: `Message must be ${MAX_MESSAGE_LENGTH} characters or fewer.` };
+  if (message.length > MAX_MESSAGE) {
+    return { ok: false, status: 400, error: `Message must be ${MAX_MESSAGE} characters or fewer.` };
   }
 
-  const rawHistory = Array.isArray(payload.history) ? payload.history : [];
-  const history = rawHistory
-    .slice(-MAX_HISTORY_ITEMS)
-    .filter((entry) => entry && (entry.role === 'user' || entry.role === 'assistant'))
-    .map((entry) => ({
-      role: entry.role,
-      content: String(entry.content ?? '').trim().slice(0, MAX_MESSAGE_LENGTH),
-    }))
-    .filter((entry) => entry.content.length > 0);
+  const history = sanitizeHistory(payload.history);
 
   return { ok: true, data: { message, history } };
 }
 
-export function checkChatRateLimit(ip, now = Date.now()) {
-  const key = ip || 'unknown';
-  const windowMs = 15 * 60 * 1000;
-  const maxRequests = 25;
-  const current = chatBuckets.get(key);
-
-  if (!current || now - current.startedAt >= windowMs) {
-    chatBuckets.set(key, { count: 1, startedAt: now });
-    return { allowed: true, remaining: maxRequests - 1 };
-  }
-
-  if (current.count >= maxRequests) {
-    const retryAfter = Math.ceil((windowMs - (now - current.startedAt)) / 1000);
-    return { allowed: false, remaining: 0, retryAfter };
-  }
-
-  current.count += 1;
-  return { allowed: true, remaining: maxRequests - current.count };
+export async function checkChatRateLimit(ip) {
+  return evaluateRateLimit(ip, ['chat', 'chatDaily']);
 }
+
+const UPSTREAM_TIMEOUT_MS = 9000;
 
 async function fetchWithTimeout(url, options, fetchImpl = fetch) {
   const controller = new AbortController();
@@ -112,7 +91,7 @@ async function queryLangChainRag({ message, history }, env, fetchImpl) {
   return {
     reply,
     sources,
-    actions: Array.isArray(data?.actions) ? data.actions.slice(0, 3) : [],
+    actions: sanitizeActions(data?.actions),
     mode: 'rag',
   };
 }
@@ -221,7 +200,7 @@ export async function generateAssistantReply(data, env = process.env, fetchImpl 
     const local = answerFromPortfolioKnowledge(data.message);
     return {
       reply: local.reply,
-      actions: local.actions || [],
+      actions: sanitizeActions(local.actions),
       sources: local.sources || [],
       mode: 'builtin',
       fallback: false,
@@ -237,7 +216,7 @@ export async function generateAssistantReply(data, env = process.env, fetchImpl 
     const local = answerFromPortfolioKnowledge(data.message);
     return {
       reply: local.reply,
-      actions: local.actions || [],
+      actions: sanitizeActions(local.actions),
       sources: local.sources || [],
       mode: 'builtin',
       fallback: true,
@@ -245,19 +224,28 @@ export async function generateAssistantReply(data, env = process.env, fetchImpl 
   }
 }
 
-export async function processChat({ method, payload, ip, env = process.env, fetchImpl = fetch }) {
+export async function processChat({
+  method,
+  payload,
+  ip,
+  env = process.env,
+  fetchImpl = fetch,
+  skipRateLimit = false,
+}) {
   if (method === 'OPTIONS') return { status: 204, body: null };
   if (method !== 'POST') {
     return { status: 405, body: { ok: false, error: 'Method not allowed.' } };
   }
 
-  const rateLimit = checkChatRateLimit(ip);
-  if (!rateLimit.allowed) {
-    return {
-      status: 429,
-      headers: { 'Retry-After': String(rateLimit.retryAfter) },
-      body: { ok: false, error: 'Too many requests. Please try again shortly.' },
-    };
+  if (!skipRateLimit) {
+    const rateLimit = await checkChatRateLimit(ip);
+    if (!rateLimit.allowed) {
+      return {
+        status: 429,
+        headers: { 'Retry-After': String(rateLimit.retryAfter) },
+        body: { ok: false, error: 'Too many requests. Please try again shortly.' },
+      };
+    }
   }
 
   const validation = validateChatPayload(payload);
@@ -271,7 +259,7 @@ export async function processChat({ method, payload, ip, env = process.env, fetc
     body: {
       ok: true,
       reply: result.reply,
-      actions: result.actions,
+      actions: sanitizeActions(result.actions),
       sources: result.sources,
       mode: result.mode,
       fallback: result.fallback,

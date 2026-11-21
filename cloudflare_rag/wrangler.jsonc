@@ -27,7 +27,7 @@
     "RATE_LIMIT_MAX_REQUESTS": "30",
     "RATE_LIMIT_WINDOW_SECONDS": "900",
     "REQUIRE_AUTH": "true",
-    "ALLOWED_ORIGINS": "https://rameshbaduguai.com,http://localhost:5173,http://127.0.0.1:5173"
+    "ALLOWED_ORIGINS": ""
   },
   "ai": {
     "binding": "AI"
